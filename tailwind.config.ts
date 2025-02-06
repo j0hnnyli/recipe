@@ -9,10 +9,14 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary_yellow : '#fde047',
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      kaushanScript : ["var(--font-kuaschan-script)"]
+    }
   },
   plugins: [],
 } satisfies Config;

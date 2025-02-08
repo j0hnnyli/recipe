@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { FaUtensils, FaClock, FaHeart, FaFacebook, FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { TiWorld } from "react-icons/ti";
-
+import PaddingContainer from '../PaddingContainer'
 
 
 
@@ -36,6 +36,7 @@ const Intro = () => {
         trigger: document.documentElement,
         start: 'top',
         end: '+=75px',
+        scrub: true,
       }
     })
     
@@ -49,7 +50,7 @@ const Intro = () => {
 
 
     if(isLoaded){
-      timeline.from(introRef.current, {clipPath : 'inset(8%)'})
+      timeline.from(introRef.current, {clipPath: 'inset(8% 8% 0 8%)'})
       titleTimeline.from(titleRef.current, {scale: 0.5, opacity: .5})
       
       feats.forEach((feat: HTMLElement) => {
@@ -80,11 +81,11 @@ const Intro = () => {
         alt='showcase'
         width={300}
         height={500}
+        priority
         className='w-full h-full object-cover brightness-[.65] absolute z-10'
       />
 
-      <div className='relative z-20 text-white w-[80%] h-[90%] p-2'>
-        
+      <PaddingContainer className='relative z-20 text-white w-[80%] h-[90%]'>
         <h2 
           ref={titleRef}
           className='font-kaushanScript text-5xl md:text-7xl lg:text-9xl mt-10 tracking-widest text-center text-primary_yellow'
@@ -144,8 +145,7 @@ const Intro = () => {
             </div>
           </div>
         </div>
-
-      </div>
+      </PaddingContainer>
     </div>
   )
 }

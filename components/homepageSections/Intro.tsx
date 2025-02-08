@@ -10,7 +10,6 @@ import { TiWorld } from "react-icons/ti";
 import PaddingContainer from '../PaddingContainer'
 
 
-
 const Intro = () => {
   const introRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);

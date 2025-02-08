@@ -22,7 +22,7 @@ const PopularRecipesSection = () => {
     ScrollTrigger.create({
       trigger: imagineRef.current,
       start: '-=100px',
-      end: infoRef.current.offsetHeight,
+      end: infoRef.current.offsetHeight + 500,
       pin: true,
     })
   }, [])

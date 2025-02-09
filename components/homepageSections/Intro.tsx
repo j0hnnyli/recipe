@@ -13,6 +13,8 @@ import PaddingContainer from '../PaddingContainer'
 const Intro = () => {
   const introRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const featRef = useRef<HTMLDivElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useLayoutEffect(() => {
@@ -20,9 +22,15 @@ const Intro = () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const feats = gsap.utils.toArray(".feats") as HTMLElement[]
-
     const featsTimeline = gsap.timeline({
+      scrollTrigger : {
+        trigger: document.documentElement, 
+        start: "top",             
+        end: "+=10px",    
+      }
+    })
+   
+    const socialTimeline = gsap.timeline({
       scrollTrigger : {
         trigger: document.documentElement, 
         start: "top",             
@@ -34,7 +42,7 @@ const Intro = () => {
       scrollTrigger : {
         trigger: document.documentElement,
         start: 'top',
-        end: '+=75px',
+        end: '+=100px',
         scrub: true,
       }
     })
@@ -49,19 +57,19 @@ const Intro = () => {
 
 
     if(isLoaded){
-      timeline.from(introRef.current, {clipPath: 'inset(8% 8% 0 8%)'})
+      timeline.from(introRef.current, {clipPath: 'inset(12% 12% 0 12%)'})
       titleTimeline.from(titleRef.current, {scale: 0.5, opacity: .5})
-      
-      feats.forEach((feat: HTMLElement) => {
-        const index = feat.dataset.index;
-
-        featsTimeline.from(feat, {
-          opacity: 0,
-          x: -20,
-          duration: 0.2,      
-          delay: Number(index) * 0.2,
-          ease: 'power1.in'
-        })
+      featsTimeline.from(featRef.current, {
+        opacity: 0,
+        x: -20,  
+        duration: 0.5,
+        ease: 'power3.in'
+      })
+      socialTimeline.from(socialRef.current, {
+        opacity: 0,
+        x: -20,  
+        duration: 0.5,
+        ease: 'power3.in'
       })
     }
  
@@ -73,7 +81,7 @@ const Intro = () => {
       style={{
         visibility: isLoaded ? 'visible' : 'hidden',
       }}
-      className="h-[92vh] w-full bg-red-400 mb-5 mt-20 relative flex flex-col justify-end items-center"
+      className="h-screen w-full bg-red-400 mb-5 mt-20 relative flex flex-col justify-end items-center"
     >
       <Image 
         src='/introbg.jpg' 
@@ -81,7 +89,7 @@ const Intro = () => {
         width={300}
         height={500}
         priority
-        className='w-full h-full object-cover brightness-[.65] absolute z-10'
+        className='w-full h-full object-cover brightness-[.60] absolute z-10'
       />
 
       <PaddingContainer className='relative z-20 text-white w-[80%] h-[90%]'>
@@ -93,11 +101,13 @@ const Intro = () => {
         </h2>
 
         <div className='h-[75%] flex flex-col md:flex-row gap-5 w-full'> 
-          <div className='flex flex-col justify-evenly h-full w-full md:w-[50%]'>
+          <div
+            ref={featRef} 
+            className='flex flex-col justify-evenly h-full w-full md:w-[50%]'
+          >
 
             <div
-              data-index='0'
-             className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
+              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
               <div className="text-4xl mb-2">
                 <FaUtensils className="text-primary_yellow"></FaUtensils>
@@ -106,7 +116,6 @@ const Intro = () => {
             </div>
 
             <div 
-              data-index='0.3'
               className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
               <div className="text-4xl mb-2">
@@ -116,7 +125,6 @@ const Intro = () => {
             </div> 
 
             <div
-              data-index='0.5'
              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
               <div className="text-4xl mb-2">
@@ -126,7 +134,6 @@ const Intro = () => {
             </div>
 
             <div
-              data-index='0.7'
              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
               <div className="text-4xl mb-2">
@@ -136,7 +143,10 @@ const Intro = () => {
             </div>            
           </div>
           
-          <div className='mt-auto ml-auto text-primary_yellow'>
+          <div
+            ref={socialRef}
+           className='mt-auto ml-auto text-primary_yellow'
+          >
             <div className='flex flex-row md:flex-col'>
               <FaFacebook className="text-4xl mr-5 md:mb-5 md:mr-0 hover:text-white cursor-pointer" />
               <FaSquareXTwitter className="text-4xl mr-5 md:mb-5 md:mr-0 hover:text-white cursor-pointer" />

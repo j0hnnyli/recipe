@@ -12,22 +12,12 @@ import PaddingContainer from '../PaddingContainer'
 
 const Intro = () => {
   const introRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const featRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useLayoutEffect(() => {
     setIsLoaded(true) 
 
     gsap.registerPlugin(ScrollTrigger);
-
-    const featsTimeline = gsap.timeline({
-      scrollTrigger : {
-        trigger: document.documentElement, 
-        start: "top",             
-        end: "+=10px",    
-      }
-    })
 
     const timeline = gsap.timeline({
       scrollTrigger : {
@@ -37,25 +27,9 @@ const Intro = () => {
         scrub: true,
       }
     })
-    
-    const titleTimeline = gsap.timeline({
-      scrollTrigger : {
-        trigger: document.documentElement,
-        start: 'top',
-        end: '+=50px',
-      }
-    })
-
 
     if(isLoaded){
       timeline.from(introRef.current, {clipPath: 'inset(12% 12% 0 12%)'})
-      titleTimeline.from(titleRef.current, {scale: 0.5, opacity: .5})
-      featsTimeline.from(featRef.current, {
-        opacity: 0,
-        x: -20,  
-        duration: 0.5,
-        ease: 'power3.in'
-      })
     }
  
   }, [isLoaded])
@@ -79,7 +53,6 @@ const Intro = () => {
 
       <PaddingContainer className='relative z-20 text-white w-[80%] h-[90%]'>
         <h2 
-          ref={titleRef}
           className='font-kaushanScript text-5xl md:text-7xl lg:text-9xl mt-10 tracking-widest text-center text-primary_yellow'
         >
           RECIPEHUB
@@ -87,7 +60,6 @@ const Intro = () => {
 
         <div className='h-[75%] flex flex-col md:flex-row gap-5 w-full'> 
           <div
-            ref={featRef} 
             className='flex flex-col justify-evenly h-full w-full md:w-[50%]'
           >
 

@@ -16,6 +16,7 @@ const PopularRecipesSection = () => {
 
   useLayoutEffect(() => {
     setIsLoaded(true)
+
     gsap.registerPlugin(ScrollTrigger)
 
     if (!infoRef.current) return;

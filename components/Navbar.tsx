@@ -48,7 +48,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="/search?input=''"
+              href="/search?input="
               className="border-b hover:text-primary_yellow text-2xl"
             >
               <SheetClose className="flex items-center justify-center w-full p-5">
@@ -60,7 +60,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="/categories/beef"
+              href="/categories/beef?input="
               className="border-b hover:text-primary_yellow text-2xl "
             >
               <SheetClose className="flex items-center justify-center w-full p-5">

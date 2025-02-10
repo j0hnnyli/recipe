@@ -133,9 +133,6 @@ const Intro = () => {
               <FaInstagramSquare className="text-4xl mr-5 hover:text-white cursor-pointer" />
             </div>
           </div>
-          
-
-          
         </div>
       </PaddingContainer>
     </div>

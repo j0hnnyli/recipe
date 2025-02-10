@@ -14,7 +14,6 @@ const Intro = () => {
   const introRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const featRef = useRef<HTMLDivElement>(null);
-  const socialRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useLayoutEffect(() => {
@@ -29,20 +28,12 @@ const Intro = () => {
         end: "+=10px",    
       }
     })
-   
-    const socialTimeline = gsap.timeline({
-      scrollTrigger : {
-        trigger: document.documentElement, 
-        start: "top",             
-        end: "+=10px",    
-      }
-    })
 
     const timeline = gsap.timeline({
       scrollTrigger : {
         trigger: document.documentElement,
         start: 'top',
-        end: '+=100px',
+        end: '+=75px',
         scrub: true,
       }
     })
@@ -65,12 +56,6 @@ const Intro = () => {
         duration: 0.5,
         ease: 'power3.in'
       })
-      socialTimeline.from(socialRef.current, {
-        opacity: 0,
-        x: -20,  
-        duration: 0.5,
-        ease: 'power3.in'
-      })
     }
  
   }, [isLoaded])
@@ -81,7 +66,7 @@ const Intro = () => {
       style={{
         visibility: isLoaded ? 'visible' : 'hidden',
       }}
-      className="h-screen w-full bg-red-400 mb-5 mt-20 relative flex flex-col justify-end items-center"
+      className="h-screen w-full mb-5 relative flex flex-col justify-end items-center"
     >
       <Image 
         src='/introbg.jpg' 
@@ -141,16 +126,11 @@ const Intro = () => {
               </div>
               <p className="text-xl">Personalized Recipe List</p>
             </div>            
-          </div>
-          
-          <div
-            ref={socialRef}
-           className='mt-auto ml-auto text-primary_yellow'
-          >
-            <div className='flex flex-row md:flex-col'>
-              <FaFacebook className="text-4xl mr-5 md:mb-5 md:mr-0 hover:text-white cursor-pointer" />
-              <FaSquareXTwitter className="text-4xl mr-5 md:mb-5 md:mr-0 hover:text-white cursor-pointer" />
-              <FaInstagramSquare className="text-4xl mr-5 md:mb-5 md:mr-0 hover:text-white cursor-pointer" />
+         
+            <div className='flex items-center text-primary_yellow justify-center'>
+              <FaFacebook className="text-4xl mr-5 hover:text-white cursor-pointer" />
+              <FaSquareXTwitter className="text-4xl mr-5 hover:text-white cursor-pointer" />
+              <FaInstagramSquare className="text-4xl mr-5 hover:text-white cursor-pointer" />
             </div>
           </div>
         </div>

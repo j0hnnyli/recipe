@@ -3,32 +3,37 @@
 import PaddingContainer from '../PaddingContainer'
 import Image from 'next/image'
 import popularRecipes from '@/lib/data/popularRecipes.json'
-import { useRef, useLayoutEffect, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
 
 const PopularRecipesSection = () => {
   const imagineRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
   const [popularRecipe, setPopularRecipe] = useState(popularRecipes[0]);
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useLayoutEffect(() => {
+    setIsLoaded(true)
     gsap.registerPlugin(ScrollTrigger)
 
     if (!infoRef.current) return;
 
-    ScrollTrigger.create({
-      trigger: imagineRef.current,
-      start: '-=100px',
-      end: infoRef.current.offsetHeight + 500,
-      pin: true,
-    })
-  }, [])
+    if(isLoaded){
+      ScrollTrigger.create({
+        trigger: imagineRef.current,
+        start: '-=100px',
+        end: infoRef.current.offsetHeight + 600,
+        pin: true,
+      })
+    }
+  }, [isLoaded])
 
   return (
-    <PaddingContainer className='mb-5'>
+    <PaddingContainer
+      className={twMerge('mb-5', isLoaded ? 'visible' : 'hidden')}
+    >
       <h2
         className='font-kaushanScript text-5xl md:text-7xl text-primary_yellow lg:hidden'
       >
@@ -37,14 +42,14 @@ const PopularRecipesSection = () => {
 
       <div className='flex flex-col lg:flex-row gap-3'>
         <div
-          ref={imagineRef} 
+          ref={imagineRef}
           className='h-[220px] md:h-[350px] lg:h-screen w-full lg:w-[50%]'
         >
           <Image src={popularRecipe.strMealThumb} alt={popularRecipe.strMeal}
             width={300}
             height={300}
             priority
-            className='w-full h-full max-h-[700px] object-cover rounded-xl mx-auto'
+            className="w-full h-full max-h-[700px] object-cover rounded-xl mx-auto"
           />
         </div>
 
@@ -59,7 +64,7 @@ const PopularRecipesSection = () => {
           </h2>
 
           <div>
-            <div>
+            <div className='lg:sticky top-20 bg-black'>
               <h2 className='text-5xl text-primary_yellow font-bold mt-10 font-kaushanScript'>
                 {popularRecipe.strMeal}
               </h2>

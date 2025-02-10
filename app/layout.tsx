@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Kaushan_Script } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/components/Navbar";
 
 const kaushanScript = Kaushan_Script({
   subsets: ["latin"],
@@ -35,7 +35,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${kaushanScript.variable} antialiased bg-black`}
       >
         <Navbar />
-        <main className="max-w-[2200px] mx-auto">{children}</main>
+        <main className="max-w-[2200px] mx-auto mt-20">{children}</main>
       </body>
     </html>
   );

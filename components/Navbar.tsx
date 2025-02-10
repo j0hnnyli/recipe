@@ -2,7 +2,8 @@ import { RiMenu2Line } from "react-icons/ri";
 import { FaBowlFood } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { BiSolidCategory } from "react-icons/bi";
-import Logo from "../Logo";
+import { FaSearch } from "react-icons/fa";
+import Logo from "./Logo";
 import {
   Sheet,
   SheetContent,
@@ -11,9 +12,8 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import NavbarSearchButton from "./NavbarSearchButton";
-const Navbar = () => {
 
+const Navbar = () => {
   return (
     <header className="fixed top-0 w-full text-white h-20 z-40 bg-black">
       <div className="flex items-center justify-between h-full w-full max-w-[2200px] mx-auto p-4 relative">
@@ -33,11 +33,12 @@ const Navbar = () => {
                 </h2>
               </div>
             </SheetTitle>
+            
             <Link
               href="/"
-              className="p-5 border-b hover:text-primary_yellow text-2xl"
+              className="border-b hover:text-primary_yellow text-2xl"
             >
-              <SheetClose className="flex items-center justify-center w-full">
+              <SheetClose className="flex items-center justify-center w-full p-5">
                 <span className="mr-2 text-primary_yellow">
                   {" "}
                   <FaHome />{" "}
@@ -46,13 +47,23 @@ const Navbar = () => {
               </SheetClose>
             </Link>
 
-            <NavbarSearchButton />
+            <Link
+              href="/search?input=''"
+              className="border-b hover:text-primary_yellow text-2xl"
+            >
+              <SheetClose className="flex items-center justify-center w-full p-5">
+                <span className="mr-2 text-primary_yellow">
+                  <FaSearch />
+                </span>
+                <span className="font-kaushanScript">Search</span>
+              </SheetClose>
+            </Link>
 
             <Link
-              href="/"
-              className="p-5 border-b hover:text-primary_yellow text-2xl"
+              href="/categories/beef"
+              className="border-b hover:text-primary_yellow text-2xl "
             >
-              <SheetClose className="flex items-center justify-center w-full">
+              <SheetClose className="flex items-center justify-center w-full p-5">
                 <span className="mr-2 text-primary_yellow">
                   <BiSolidCategory />
                 </span>

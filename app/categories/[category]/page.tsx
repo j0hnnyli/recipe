@@ -7,7 +7,6 @@ type Props = {
   params: {
     category : string;
   }
-
   searchParams: {
     input: string
   }

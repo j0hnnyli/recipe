@@ -4,8 +4,10 @@ import ShowMoreLess from '@/components/ShowMoreLess'
 import SmoothScrollContainer from '@/components/SmoothScrollContainer'
 import { getRecipe } from '@/lib/fetchdatafns'
 import { Recipe } from '@/lib/types/recipeType'
-import Image from 'next/image'
 import React, { Suspense } from 'react'
+import AnimateIngredients from '../AnimateIngredients'
+import AnimateScaleImg from '@/app/recipe/AnimateScaleImg'
+
 
 type Props = {
   params : {
@@ -33,11 +35,11 @@ const RecipePage = async ({params} : Props) => {
         </div>
 
         <div className='mt-5 flex flex-col-reverse md:flex-row pb-5 border-b border-primary_yellow'>
-          <div className='w-[50%]'>
+          <div className='md:w-[50%]'>
             <h2 className='font-kaushanScript text-5xl tracking-widest text-primary_yellow'>
               Ingredients
             </h2>
-            <ul className='text-white'>
+            <ul className='text-white text-xl 2xl:text-4xl tracking-widest'>
               {Object.keys(recipe).map((key: string) => {
                 if (key.includes('strMeasure')) {
                   const measurement = recipe[key as keyof typeof recipe];
@@ -46,24 +48,25 @@ const RecipePage = async ({params} : Props) => {
               
                   if (measurement && ingredient) {
                     return (
-                      <li key={key} 
-                        className='my-1 list-none'
+                      <AnimateIngredients 
+                        key={key} 
+                        className='my-1 list-none relative'
                       >
                         {measurement} - {ingredient}
-                      </li>
+                      </AnimateIngredients>
                     );
                   }
                 }
               })}
             </ul>
           </div>
-          <div className='md:w-[50%]'>
-            <Image
+          <div className='md:w-[50%] max-h-[750px] overflow-hidden'>
+            <AnimateScaleImg
               src={recipe.strMealThumb}
               alt={recipe.strMeal}
               width={400}
               height={500}
-              priority
+              // priority
               className='w-full h-full object-cover rounded-xl'
             />
           </div>

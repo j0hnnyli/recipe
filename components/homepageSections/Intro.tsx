@@ -8,6 +8,8 @@ import { FaUtensils, FaClock, FaHeart, FaFacebook, FaInstagramSquare } from "rea
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { TiWorld } from "react-icons/ti";
 import PaddingContainer from '../PaddingContainer'
+import { twMerge } from 'tailwind-merge'
+import About from './About'
 
 
 const Intro = () => {
@@ -37,10 +39,7 @@ const Intro = () => {
   return (
     <div 
       ref={introRef} 
-      style={{
-        visibility: isLoaded ? 'visible' : 'hidden',
-      }}
-      className="h-screen w-full mb-5 relative flex flex-col justify-end items-center"
+      className={twMerge("h-[140vh] w-full mb-5 relative flex flex-col justify-end items-center", isLoaded ? 'visible' : 'hidden')}
     >
       <Image 
         src='/introbg.jpg' 
@@ -48,7 +47,7 @@ const Intro = () => {
         width={300}
         height={500}
         priority
-        className='w-full h-full object-cover brightness-[.60] absolute z-10'
+        className='w-full h-full object-cover brightness-[.50] absolute z-10'
       />
 
       <PaddingContainer className='relative z-20 text-white w-[80%] h-[90%]'>
@@ -58,11 +57,10 @@ const Intro = () => {
           RECIPEHUB
         </h2>
 
-        <div className='h-[75%] flex flex-col md:flex-row gap-5 w-full'> 
+        <div className='h-[50%] flex flex-col md:flex-row gap-5 w-full'> 
           <div
             className='flex flex-col justify-evenly h-full w-full md:w-[50%]'
           >
-
             <div
               className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
@@ -106,6 +104,11 @@ const Intro = () => {
             </div>
           </div>
         </div>
+
+        <div>
+          <About/>
+        </div>
+
       </PaddingContainer>
     </div>
   )

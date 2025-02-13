@@ -25,7 +25,7 @@ const PopularRecipesSection = () => {
       ScrollTrigger.create({
         trigger: imagineRef.current,
         start: '-=100px',
-        end: infoRef.current.offsetHeight + 600,
+        end: infoRef.current.offsetHeight + 800,
         pin: true,
       })
     }
@@ -41,10 +41,10 @@ const PopularRecipesSection = () => {
         PopularRecipes
       </h2>
 
-      <div className='flex flex-col lg:flex-row gap-3'>
+      <div className='flex flex-col md:flex-row gap-3'>
         <div
           ref={imagineRef}
-          className='h-[220px] md:h-[350px] lg:h-screen w-full lg:w-[50%]'
+          className='h-[220px] md:h-[350px] lg:h-screen w-full md:w-[50%]'
         >
           <Image src={popularRecipe.strMealThumb} alt={popularRecipe.strMeal}
             width={300}
@@ -56,7 +56,7 @@ const PopularRecipesSection = () => {
 
         <div 
           ref={infoRef}
-          className='text-white w-full lg:w-[50%]'
+          className='text-white w-full md:w-[50%]'
         >
           <h2
             className='font-kaushanScript text-5xl md:text-7xl text-primary_yellow hidden lg:inline'

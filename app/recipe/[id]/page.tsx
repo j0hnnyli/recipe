@@ -4,10 +4,10 @@ import ShowMoreLess from '@/components/ShowMoreLess'
 import SmoothScrollContainer from '@/components/SmoothScrollContainer'
 import { getRecipe } from '@/lib/fetchdatafns'
 import { Recipe } from '@/lib/types/recipeType'
-// import Image from 'next/image'
 import React, { Suspense } from 'react'
 import AnimateIngredients from '../AnimateIngredients'
 import AnimateScaleImg from '@/app/recipe/AnimateScaleImg'
+
 
 type Props = {
   params : {

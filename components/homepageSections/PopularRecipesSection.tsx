@@ -10,7 +10,6 @@ import gsap from 'gsap'
 
 const PopularRecipesSection = () => {
   const imagineRef = useRef<HTMLDivElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
   const [popularRecipe, setPopularRecipe] = useState(popularRecipes[0]);
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -19,13 +18,11 @@ const PopularRecipesSection = () => {
 
     gsap.registerPlugin(ScrollTrigger)
 
-    if (!infoRef.current) return;
-
     if(isLoaded){
       ScrollTrigger.create({
         trigger: imagineRef.current,
-        start: '-=100px',
-        end: infoRef.current.offsetHeight + 800,
+        start: '-=120px',
+        end: document.body.offsetHeight,
         pin: true,
       })
     }
@@ -33,40 +30,46 @@ const PopularRecipesSection = () => {
 
   return (
     <PaddingContainer
-      className={twMerge('mb-5', isLoaded ? 'visible' : 'hidden')}
+      className={twMerge(isLoaded ? 'visible' : 'hidden', 'mb-5')}
     >
       <h2
-        className='font-kaushanScript text-5xl md:text-7xl text-primary_yellow lg:hidden'
+        className='font-kaushanScript text-5xl md:text-7xl text-primary_yellow'
       >
         PopularRecipes
       </h2>
 
       <div className='flex flex-col md:flex-row gap-3'>
         <div
+          className='h-[220px] w-full md:hidden'
+        >
+          {/* mobile */}
+          <Image src={popularRecipe.strMealThumb} alt={popularRecipe.strMeal}
+            width={300}
+            height={300}
+            priority
+            className="w-full h-full max-h-[700px] object-cover rounded-xl mx-auto brightness-[.75]"
+          />
+        </div>
+
+        {/* medium screen up */}
+        <div
           ref={imagineRef}
-          className='h-[220px] md:h-[350px] lg:h-screen w-full md:w-[50%]'
+          className='h-[220px] w-full md:w-[50%] md:h-[60vh] z-10 hidden md:flex'
         >
           <Image src={popularRecipe.strMealThumb} alt={popularRecipe.strMeal}
             width={300}
             height={300}
             priority
-            className="w-full h-full max-h-[700px] object-cover rounded-xl mx-auto"
+            className="w-full h-full max-h-[700px] object-cover rounded-xl mx-auto brightness-[.75]"
           />
         </div>
 
         <div 
-          ref={infoRef}
           className='text-white w-full md:w-[50%]'
         >
-          <h2
-            className='font-kaushanScript text-5xl md:text-7xl text-primary_yellow hidden lg:inline'
-          >
-            PopularRecipes
-          </h2>
-
-          <div>
-            <div className='lg:sticky top-20 bg-black'>
-              <h2 className='text-5xl text-primary_yellow font-bold mt-10 font-kaushanScript'>
+          <div >
+            <div className='sticky top-20 md:relative md:top-0 bg-black'>
+              <h2 className='text-5xl text-primary_yellow font-bold font-kaushanScript'>
                 {popularRecipe.strMeal}
               </h2>
               <div className='my-2 text-2xl'>
@@ -84,7 +87,7 @@ const PopularRecipesSection = () => {
               </h2>
             </div>
 
-            <div className='flex justify-start md:justify-end items-center mt-10'>
+            <div className='mt-10'>
               <div>
                 <h2 className='font-kaushanScript text-primary_yellow text-5xl lg:text-6xl mr-5 tracking-widest'>
                   Ingredients
@@ -112,7 +115,7 @@ const PopularRecipesSection = () => {
             </div>
           </div>
 
-          <div className='text-white  mt-5 md:mt-10'>
+          <div className='text-white  mt-5 relative z-20'>
             {popularRecipes.map((recipe) => (
               <div 
                 key={recipe.idMeal}
@@ -125,13 +128,14 @@ const PopularRecipesSection = () => {
                   }
                 >
                   {recipe.strMeal}
-                </h3>  
+                </h3>   
               </div>
             ))}
           </div>
-        </div>
 
+        </div>
       </div>
+
     </PaddingContainer>
   )
 }

@@ -39,7 +39,9 @@ const Intro = () => {
   return (
     <div 
       ref={introRef} 
-      className={twMerge("h-[140vh] w-full mb-5 relative flex flex-col justify-end items-center", isLoaded ? 'visible' : 'hidden')}
+      className={
+        twMerge("h-[150vh] w-full mb-5 relative flex flex-col justify-end items-center", isLoaded ? 'visible' : 'hidden')
+      }
     >
       <Image 
         src='/introbg.jpg' 

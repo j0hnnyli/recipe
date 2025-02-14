@@ -4,15 +4,12 @@ import ShowMoreLess from '@/components/ShowMoreLess'
 import SmoothScrollContainer from '@/components/SmoothScrollContainer'
 import { getRecipe } from '@/lib/fetchdatafns'
 import { Recipe } from '@/lib/types/recipeType'
-// import Image from 'next/image'
 import React, { Suspense } from 'react'
 import AnimateIngredients from '../AnimateIngredients'
 import AnimateScaleImg from '@/app/recipe/AnimateScaleImg'
 
 type Props = {
-  params : {
-    id : string
-  }
+  params : Promise<{ id : string }>
 }
 
 const RecipePage = async ({params} : Props) => {
@@ -66,7 +63,6 @@ const RecipePage = async ({params} : Props) => {
               alt={recipe.strMeal}
               width={400}
               height={500}
-              // priority
               className='w-full h-full object-cover rounded-xl'
             />
           </div>

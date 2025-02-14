@@ -15,10 +15,10 @@ const CategorySearchBar = () => {
 
   return (
     <input type="text" 
-      placeholder='Filter . . .'
+      placeholder={`Filter ${category[0].toUpperCase() + category.slice(1)} . . .`}
       value={searchInput}
       onChange={(e) => setSearchInput(e.target.value)}
-      className='outline-none text-white bg-black border-b border-primary_yellow text-xl p-2' 
+      className='outline-none text-white bg-black border-b border-primary_yellow text-xl p-2 w-full' 
     />
   )
 }

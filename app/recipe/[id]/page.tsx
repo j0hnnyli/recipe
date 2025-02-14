@@ -8,11 +8,8 @@ import React, { Suspense } from 'react'
 import AnimateIngredients from '../AnimateIngredients'
 import AnimateScaleImg from '@/app/recipe/AnimateScaleImg'
 
-
 type Props = {
-  params : {
-    id : string
-  }
+  params : Promise<{ id : string }>
 }
 
 const RecipePage = async ({params} : Props) => {
@@ -66,7 +63,6 @@ const RecipePage = async ({params} : Props) => {
               alt={recipe.strMeal}
               width={400}
               height={500}
-              // priority
               className='w-full h-full object-cover rounded-xl'
             />
           </div>

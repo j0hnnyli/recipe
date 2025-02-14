@@ -1,15 +1,25 @@
-import React, { ReactNode } from 'react'
-import CategoriesColumn from './CategoriesColumn'
 import PaddingContainer from '@/components/PaddingContainer'
+import SmoothScrollContainer from '@/components/SmoothScrollContainer'
+import React, { ReactNode } from 'react'
+import CategorySelect from './CategorySelect'
+import CategoriesSelectOptions from './CategoriesSelectOptions'
+import CategorySearchBar from './CategorySearchBar'
 
-const layout = ({children} : { children : ReactNode}) => {
+const layout = ({ children } : { children : ReactNode }) => {
   return (
-    <div className='flex flex-col md:flex-row'>
-      <CategoriesColumn />
-      <PaddingContainer className="md:w-[75%] ml-auto">
-        {children}
+    <SmoothScrollContainer>
+      <PaddingContainer>
+        <div className="flex items-center justify-between gap-4 pr-2 ">
+          <CategorySelect>
+            <CategoriesSelectOptions />
+          </CategorySelect>
+          
+          <CategorySearchBar />
+        </div>
+
+        <main>{children}</main>
       </PaddingContainer>
-    </div>
+    </SmoothScrollContainer>
   )
 }
 

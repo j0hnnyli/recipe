@@ -10,6 +10,7 @@ import {
   SheetTrigger,
   SheetTitle,
   SheetClose,
+  SheetDescription
 } from "@/components/ui/sheet";
 import Link from "next/link";
 
@@ -28,9 +29,9 @@ const Navbar = () => {
             <SheetTitle className="flex flex-col items-center">
               <div className="flex flex-col items-center">
                 <Logo width="30px" height="30px" />
-                <h2 className="text-2xl font-bold text-primary_yellow font-kaushanScript tracking-widest">
+                <SheetDescription className="text-2xl font-bold text-primary_yellow font-kaushanScript tracking-widest">
                   RecipeHub
-                </h2>
+                </SheetDescription>
               </div>
             </SheetTitle>
             

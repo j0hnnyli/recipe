@@ -23,7 +23,7 @@ const AnimateText = ({ children, className } : Props) => {
         scrollTrigger: {
           trigger : text.current,
           start: '0px bottom',
-          end: 'bottom+=400px bottom',
+          end: 'bottom+=200px bottom',
           scrub: true,
         },
         left: '-200px',

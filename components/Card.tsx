@@ -18,6 +18,7 @@ const Card = ({img, title, id} : Props) => {
           alt={title}
           width={300}
           height={300}
+          priority
           className="h-full w-full rounded-lg"
         />
       </div>

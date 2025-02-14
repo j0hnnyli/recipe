@@ -19,8 +19,8 @@ const AnimateScaleImg = ({src, alt, className, width, height} : Props) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);  
 
   useLayoutEffect(() => {
-    setIsMounted(true)
     gsap.registerPlugin(ScrollTrigger);
+    setIsMounted(true)
 
     if(isMounted){
       gsap.fromTo(imgRef.current, 
@@ -50,6 +50,7 @@ const AnimateScaleImg = ({src, alt, className, width, height} : Props) => {
       alt={alt}
       width={width}
       height={height}
+      priority
       className={twMerge(isMounted ? 'visible' : 'hidden',className)}
     />  
   )

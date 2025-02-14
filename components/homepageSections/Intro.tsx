@@ -110,7 +110,6 @@ const Intro = () => {
         <div>
           <About/>
         </div>
-
       </PaddingContainer>
     </div>
   )

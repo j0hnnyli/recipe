@@ -3,6 +3,7 @@ import { FaBowlFood } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { BiSolidCategory } from "react-icons/bi";
 import { FaSearch } from "react-icons/fa";
+import Link from "next/link";
 import Logo from "./Logo";
 import {
   Sheet,
@@ -12,7 +13,6 @@ import {
   SheetClose,
   SheetDescription
 } from "@/components/ui/sheet";
-import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -76,9 +76,12 @@ const Navbar = () => {
 
         <div className="flex items-center">
           <Logo width="30px" height="30px" />
-          <h2 className="text-2xl font-bold text-primary_yellow font-kaushanScript tracking-widest">
+          <Link 
+            href="/" 
+            className="text-2xl font-bold text-primary_yellow font-kaushanScript tracking-widest hover:text-white"
+          >
             RecipeHub
-          </h2>
+          </Link>
         </div>
 
         <div>

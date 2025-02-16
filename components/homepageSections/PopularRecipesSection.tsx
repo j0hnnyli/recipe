@@ -60,7 +60,7 @@ const PopularRecipesSection = () => {
             width={300}
             height={300}
             priority
-            className="w-full h-full max-h-[700px] object-cover rounded-xl mx-auto brightness-[.75]"
+            className="w-full h-full max-h-[700px] object-cover rounded-xl mx-auto "
           />
         </div>
 

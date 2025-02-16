@@ -12,7 +12,7 @@ export default async function CategoriesPage({ params, searchParams } : Props) {
   const { input } = await searchParams;
   const recipes : CategoryRecipeType[] = await getRecipesByCategory(category)
 
-  const filtered = recipes.filter((recipe) => recipe.strMeal.toLowerCase().includes(input))
+  const filtered = recipes.filter((recipe) => recipe.strMeal.toLowerCase().includes(input.toLowerCase()))
 
   return (
     <>

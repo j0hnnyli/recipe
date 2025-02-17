@@ -7,6 +7,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
+import Link from 'next/link'
 
 const PopularRecipesSection = () => {
   const imagineRef = useRef<HTMLDivElement>(null);
@@ -69,9 +70,12 @@ const PopularRecipesSection = () => {
         >
           <div >
             <div className='sticky top-20 md:relative md:top-0 bg-black'>
-              <h2 className='text-5xl text-primary_yellow font-bold font-kaushanScript'>
+              <Link 
+                href={`/recipe/${popularRecipe.idMeal}`}
+                className='text-5xl text-primary_yellow font-bold font-kaushanScript hover:text-white cursor-pointer'>
                 {popularRecipe.strMeal}
-              </h2>
+              </Link>
+
               <div className='my-2 text-2xl'>
                 {popularRecipe.strTags.map((tag) => <span key={tag} className='mr-1'>-{tag}</span>)}
               </div>

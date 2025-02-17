@@ -12,10 +12,10 @@ const SearchPageSearchBar = () => {
   const [query] = useDebounce(searchInput, 500)
 
   useEffect(() => {
-    if(!searchInput) return;
+    if(!query) return;
 
     router.push(`/search?input=${query.toLowerCase()}`)
-  }, [searchInput, query, router])
+  }, [router, query])
 
   return (
     <div 

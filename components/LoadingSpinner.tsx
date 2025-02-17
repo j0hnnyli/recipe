@@ -7,7 +7,7 @@ type Props = {
 
 const LoadingSpinner = ({ className = "" }: Props) => {
   return (
-    <div className="flex h-[calc(100vh-250px)] w-screen items-center justify-center md:h-full md:w-full">  
+    <div className={twMerge("flex h-[calc(100vh-250px)] w-screen items-center justify-center md:h-full md:w-full", className)}>  
       <svg
         aria-hidden="true"
         className={twMerge('mr-2 h-12 w-12 animate-spin fill-[#fde047] text-white', className)}

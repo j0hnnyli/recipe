@@ -2,6 +2,9 @@ import Link from "next/link";
 import Logo from "../Logo";
 import NavbarMenu from "./NavbarMenu";
 import NavbarQuickListButton from "./NavbarQuickListButton";
+import { IoPerson } from "react-icons/io5";
+import HoverTip from "../HoverTip";
+
 
 const Navbar = () => {
   return (
@@ -18,8 +21,14 @@ const Navbar = () => {
             RecipeHub
           </Link>
         </div>
-
-        <NavbarQuickListButton/>
+        <div className="flex items-center">
+          <HoverTip tip='My Recipes' time={100}>
+            <NavbarQuickListButton/>
+          </HoverTip>
+          <HoverTip tip='Sign In' time={100}>
+            <IoPerson className="text-2xl ml-5 hover:text-primary_yellow cursor-pointer"/>
+          </HoverTip>
+        </div>
       </div>
     </header>
   );

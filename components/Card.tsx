@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import QuickAddButton from "./QuickAddButton";
 
 type Props = {
   img: string,
@@ -9,10 +10,10 @@ type Props = {
 
 const Card = ({img, title, id} : Props) => {
   return (
-    <Link href={`/recipe/${id}`}
-      className="hover:border border-primary_yellow rounded-xl p-1"
-    >
-      <div>
+    <div className="hover:border border-primary_yellow rounded-xl p-1 relative ">
+      <Link href={`/recipe/${id}`} className="absolute w-full h-full z-10"></Link>
+
+      <div className="relative">
         <Image
           src={img}
           alt={title}
@@ -21,6 +22,7 @@ const Card = ({img, title, id} : Props) => {
           priority
           className="h-full w-full rounded-lg"
         />
+        <QuickAddButton />
       </div>
       <h2 className="text-white font-kaushanScript text-2xl">
         {
@@ -29,7 +31,7 @@ const Card = ({img, title, id} : Props) => {
           title
         }
       </h2>
-    </Link>
+    </div>
   )
 }
 

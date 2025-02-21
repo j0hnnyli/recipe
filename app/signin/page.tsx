@@ -8,12 +8,17 @@ import PaddingContainer from "@/components/PaddingContainer"
 const SignInPage = () => {
   return (
     <PaddingContainer>
-      <div className="-mt-20 h-screen flex flex-col items-center justify-center">
-        <div className="text-primary_yellow font-kaushanScript flex flex-col items-center justify-center">
-          <Logo width='75px' height='75px'/>
-          <h2 className="text-3xl">RecipeHub</h2>
+      <div className="md:-mt-20 md:h-screen md:flex md:flex-col md:items-center md:justify-center">
+        <div className="md:w-[60%]">
+          <div className="text-primary_yellow font-kaushanScript flex flex-col items-center justify-center">
+            <Logo width='75px' height='75px'/>
+            <h2 className="text-3xl">RecipeHub</h2>
+          </div>    
+          <p className="text-white text-center">
+            Login or create an account to customize your personal recipe list!
+          </p>
         </div>
-        <Tabs defaultValue="login" className="w-full md:w-[50%] mt-5">
+        <Tabs defaultValue="login" className="w-full md:w-[60%] lg:w-[50%] mt-5">
           <TabsList className="focus:bg-black focus:text-white  bg-black text-primary_yellow w-full font-kaushanScript">
             <TabsTrigger 
               value="login" 

@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Sheet,
   SheetTrigger,
@@ -5,9 +7,14 @@ import {
 import { FaBowlFood } from "react-icons/fa6";
 import RecipeListLength from "./RecipeListLength";
 import QuickListContent from "../QuickListContent";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/config";
 
 const NavbarQuickListButton = () => {
+  const [ user ] = useAuthState(auth);
+
+  if(!user) return null;
+
   return (
     <Sheet>
       <SheetTrigger 

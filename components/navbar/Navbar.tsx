@@ -25,9 +25,11 @@ const Navbar = () => {
           <HoverTip tip='My Recipes' time={100}>
             <NavbarQuickListButton/>
           </HoverTip>
-          <HoverTip tip='Sign In' time={100}>
-            <IoPerson className="text-2xl ml-5 hover:text-primary_yellow cursor-pointer"/>
-          </HoverTip>
+          <Link href='/signin'>
+            <HoverTip tip='Sign In' time={100}>
+              <IoPerson className="text-2xl ml-5 hover:text-primary_yellow cursor-pointer"/>
+            </HoverTip>
+          </Link>
         </div>
       </div>
     </header>

@@ -6,12 +6,15 @@ import {
 import { CiLogout } from "react-icons/ci";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase/config";
+import { useRouter } from "next/navigation";
 
 const SignOut = () => {
+  const router = useRouter();
 
   const handleSignOut = async () => {
     try{
       await signOut(auth)
+      router.refresh();
     }catch(err){
       if(err instanceof Error){
         throw new Error(err.message)

@@ -1,12 +1,22 @@
+'use client'
+
 import { Sheet, SheetTrigger } from "@/components/ui/sheet"
 import { FaPlus } from "react-icons/fa";
 import QuickListContent from "./QuickListContent";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/config";
+import { RiLoader5Line } from "react-icons/ri";
 
-// type Props = {
-//   id: string;
-// }
 
-const QuickAddButton = ( ) => {
+const QuickAddButton = () => {
+  const [ user, loading ] = useAuthState(auth);
+
+  if(loading){
+    return <RiLoader5Line className="text-2xl text-primary_yellow animate-spin ml-5 absolute bottom-3 right-3"/>
+  }
+
+  if(!user) return null;
+
   return (
     <Sheet>
       <SheetTrigger 
@@ -16,7 +26,7 @@ const QuickAddButton = ( ) => {
       </SheetTrigger>
       <QuickListContent />
     </Sheet>
-  )
-}
+  );
+};
 
-export default QuickAddButton
+export default QuickAddButton;

@@ -66,37 +66,37 @@ const Intro = () => {
             <div
               className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
-              <div className="text-4xl mb-2">
+              <div className="text-4xl 2xl:text-6xl mb-2">
                 <FaUtensils className="text-primary_yellow"></FaUtensils>
               </div>
-              <p className="text-xl">Variety of Recipes</p>
+              <p className="text-xl 2xl:text-3xl">Variety of Recipes</p>
             </div>
 
             <div 
               className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
-              <div className="text-4xl mb-2">
+              <div className="text-4xl 2xl:text-6xl mb-2">
                 <FaClock className="text-primary_yellow"></FaClock>
               </div>
-              <p className="text-xl">Quick & Easy Recipes</p>
+              <p className="text-xl 2xl:text-3xl">Quick & Easy Recipes</p>
             </div> 
 
             <div
              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
-              <div className="text-4xl mb-2">
+              <div className="text-4xl 2xl:text-6xl mb-2">
                 <TiWorld className="text-primary_yellow"></TiWorld>
               </div>
-              <p className="text-xl">Variety of Cultures</p>
+              <p className="text-xl 2xl:text-3xl">Variety of Cultures</p>
             </div>
 
             <div
              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
             >
-              <div className="text-4xl mb-2">
+              <div className="text-4xl 2xl:text-6xl mb-2">
                 <FaHeart className="text-primary_yellow"></FaHeart>
               </div>
-              <p className="text-xl">Personalized Recipe List</p>
+              <p className="text-xl 2xl:text-3xl">Personalized Recipe List</p>
             </div>            
          
             <div className='flex items-center text-primary_yellow justify-center'>

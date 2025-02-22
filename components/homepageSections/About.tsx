@@ -10,9 +10,9 @@ const textArray = [
 const About = () => {
   return (
     <div
-      className="text-xl md:text-2xl md:w-[80%] mx-auto mt-10"
+      className="text-xl md:text-2xl 2xl:text-5xl md:w-[80%] mx-auto mt-10"
     >
-      {textArray.map((text, i) => <AnimateText key={i} className="relative">{text}</AnimateText>)}
+      {textArray.map((text, i) => <AnimateText key={i} className="relative mt-3">{text}</AnimateText>)}
     </div>
   )
 }

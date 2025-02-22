@@ -22,7 +22,9 @@ const Card = ({img, title, id} : Props) => {
           priority
           className="h-full w-full rounded-lg"
         />
+
         <QuickAddButton />
+
       </div>
       <h2 className="text-white font-kaushanScript text-2xl">
         {

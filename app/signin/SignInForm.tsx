@@ -6,6 +6,7 @@ import { RiLoader5Line } from "react-icons/ri";
 import { useRouter } from 'next/navigation';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/config';
+import ForgotPassword from './ForgotPassword';
 
 
 const SignInForm = () => {
@@ -87,6 +88,8 @@ const SignInForm = () => {
         </button>
         {error && <p className='text-red-500 font-bold ml-3'>Error, Try Again</p>}
       </div>
+      
+      <ForgotPassword />
     </form>
   )
 }

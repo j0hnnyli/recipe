@@ -1,19 +1,22 @@
-import React from 'react'
+'use client'
+
+import { recipeListContext } from '@/context/RecipeList';
+import React, { useContext } from 'react'
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
-  length : number,
   className?: string;
 }
 
-const RecipeListLength = ({ length, className } : Props) => {
+const RecipeListLength = ({ className } : Props) => {
+  const { recipes } = useContext(recipeListContext)
 
   return (
     <p className={
-      twMerge('absolute top-[-5px] right-[-5px] text-sm bg-red-500 text-primary_yellow px-1 rounded-full', className)
+      twMerge('text-sm bg-red-500 text-primary_yellow px-1 rounded-full', className)
       }
     >
-      {length}
+      {recipes.length}
     </p>
   )
 }

@@ -12,7 +12,7 @@ const About = () => {
     <div
       className="text-xl md:text-2xl 2xl:text-5xl md:w-[80%] mx-auto mt-10"
     >
-      {textArray.map((text, i) => <AnimateText key={i} className="relative mt-3">{text}</AnimateText>)}
+      {textArray.map((text, i) => <AnimateText key={i} className="relative mt-1.5">{text}</AnimateText>)}
     </div>
   )
 }

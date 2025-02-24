@@ -61,7 +61,7 @@ const Intro = () => {
 
         <div className='h-[50%] flex flex-col md:flex-row gap-5 w-full'> 
           <div
-            className='flex flex-col justify-evenly h-full w-full md:w-[50%]'
+            className='flex flex-col justify-evenly h-full w-full md:w-[60%]'
           >
             <div
               className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"

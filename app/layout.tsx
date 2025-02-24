@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import { RecipeListProvider } from "@/context/RecipeList";
+import { Toaster } from "@/components/ui/sonner";
 
 const kaushanScript = Kaushan_Script({
   subsets: ["latin"],
@@ -30,13 +32,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${kaushanScript.variable} antialiased bg-black`}
-      >
-        <Navbar />
-        <main className="max-w-[2200px] mx-auto mt-20">{children}</main>
-      </body>
-    </html>
+    <RecipeListProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${kaushanScript.variable} antialiased bg-black`}
+        >
+          <Navbar />
+          <main className="max-w-[2000px] mx-auto mt-20">{children}</main>
+          <Toaster position="top-center" richColors/>
+        </body>
+      </html>
+    </RecipeListProvider>
   );
 }

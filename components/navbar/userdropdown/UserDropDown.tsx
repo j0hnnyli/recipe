@@ -6,9 +6,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { GiWok } from "react-icons/gi";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import SignOut from "./SignOut";
+import RecipeListLength from "../RecipeListLength";
 
 
 const UserDropDown = () => {
@@ -26,7 +26,7 @@ const UserDropDown = () => {
         <DropdownMenuLabel className="text-center text-sm">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator/>
         <DropdownMenuItem className="flex items-center justify-between cursor-pointer">
-          <GiWok className="text-3xl"/>
+          <RecipeListLength />
           <p>My Recipes</p>
         </DropdownMenuItem>
         <DropdownMenuSeparator/>

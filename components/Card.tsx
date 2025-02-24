@@ -23,7 +23,7 @@ const Card = ({img, title, id} : Props) => {
           className="h-full w-full rounded-lg"
         />
 
-        <QuickAddButton />
+        <QuickAddButton id={id} img={img} name={title}/>
 
       </div>
       <h2 className="text-white font-kaushanScript text-2xl">

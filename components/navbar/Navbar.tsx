@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Logo from "../Logo";
 import NavbarMenu from "./NavbarMenu";
-import NavbarQuickListButton from "./NavbarQuickListButton";
-import HoverTip from "../HoverTip";
 import SignInButton from "./SignInButton";
 
 
@@ -22,9 +20,6 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <HoverTip tip='My Recipes' time={100}>
-            <NavbarQuickListButton/>
-          </HoverTip>
           <SignInButton />
         </div>
       </div>

@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
         hostname: 'www.themealdb.com',
         pathname: '/images/media/meals/**',
       },
-    ]
+    ],
+    unoptimized : true,
   }
 };
 

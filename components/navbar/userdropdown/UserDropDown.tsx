@@ -9,6 +9,7 @@ import {
 import { IoPersonCircleOutline } from "react-icons/io5";
 import SignOut from "./SignOut";
 import RecipeListLength from "../RecipeListLength";
+import Link from "next/link";
 
 
 const UserDropDown = () => {
@@ -25,9 +26,14 @@ const UserDropDown = () => {
       <DropdownMenuContent className="mr-2 bg-black text-white border-primary_yellow">
         <DropdownMenuLabel className="text-center text-sm">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator/>
-        <DropdownMenuItem className="flex items-center justify-between cursor-pointer">
-          <RecipeListLength />
-          <p>My Recipes</p>
+        <DropdownMenuItem >
+          <Link 
+            href="/myrecipes"
+            className="flex items-center justify-between cursor-pointer w-full"
+          >
+            <RecipeListLength />
+            <p>My Recipes</p>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator/>
         <SignOut/>

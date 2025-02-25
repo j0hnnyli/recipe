@@ -17,7 +17,7 @@ const HoverTip = ({ children, tip, time } : Props) => {
     <TooltipProvider>
       <Tooltip delayDuration={time}>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className="text-sm bg-black text-primary_yellow">
+        <TooltipContent className="text-sm bg-black text-primary_yellow border-primary_yellow">
           <p>{tip}</p>
         </TooltipContent>
       </Tooltip>

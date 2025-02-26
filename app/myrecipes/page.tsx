@@ -33,7 +33,6 @@ const MyRecipesPage = () => {
     )
   }
 
-
   return (
     <PaddingContainer>
       <h2 className='text-primary_yellow text-4xl flex items-center justify-center'>

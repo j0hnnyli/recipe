@@ -35,7 +35,7 @@ const SignInForm = () => {
       await signInWithEmailAndPassword(email, pass);
       setEmail("")
       setPass("")
-      router.push("/");
+      router.back();
     }catch(err){
       setError(true)
       if(err instanceof Error){

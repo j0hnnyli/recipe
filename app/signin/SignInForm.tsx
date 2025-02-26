@@ -9,6 +9,7 @@ import { auth } from '@/firebase/config';
 import ForgotPassword from './ForgotPassword';
 
 
+
 const SignInForm = () => {
   const router = useRouter()
   const [email, setEmail] = useState<string>("");
@@ -34,7 +35,7 @@ const SignInForm = () => {
       await signInWithEmailAndPassword(email, pass);
       setEmail("")
       setPass("")
-      router.back();
+      router.push("/");
     }catch(err){
       setError(true)
       if(err instanceof Error){

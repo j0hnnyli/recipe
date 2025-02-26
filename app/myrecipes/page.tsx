@@ -13,6 +13,7 @@ import LoadingSpinner from '@/components/LoadingSpinner'
 import RemoveButton from './RemoveButton'
 
 
+
 const MyRecipesPage = () => {
   const [user, loading] = useAuthState(auth)
   const { recipes } = useContext(recipeListContext);
@@ -31,7 +32,6 @@ const MyRecipesPage = () => {
       </div>
     )
   }
-
 
   return (
     <PaddingContainer>

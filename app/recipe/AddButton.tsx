@@ -15,7 +15,7 @@ type Props = {
 
 const AddButton = ( {id, img, name} : Props) => {
   const [user, loading] = useAuthState(auth);
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { recipes, handleAdd, handleDelete } = useContext(recipeListContext)
   
   if(!user) return null;

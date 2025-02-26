@@ -1,4 +1,4 @@
-import { SelectItem, SelectContent, SelectTrigger } from "@/components/ui/select";
+import { SelectItem, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { getCateogires } from "@/lib/fetchdatafns";
 import { Categories } from "@/lib/types/categoriesType";
 
@@ -8,7 +8,7 @@ const CategoriesSelectOptions = async () => {
   return (
     <>
       <SelectTrigger className='bg-black text-primary_yellow font-kaushanScript text-xl tracking-widest md:w-[25%] max-w-[500px]'>
-        <h2>Categories</h2>
+        <SelectValue placeholder="Beef" />
       </SelectTrigger>
       <SelectContent className="bg-black text-primary_yellow">
         {categories.map((category) => (

@@ -26,15 +26,15 @@ const UserDropDown = () => {
       <DropdownMenuContent className="mr-2 bg-black text-white border-primary_yellow">
         <DropdownMenuLabel className="text-center text-sm">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator/>
-        <DropdownMenuItem >
           <Link 
             href="/myrecipes"
-            className="flex items-center justify-between cursor-pointer w-full"
+            className="flex items-center justify-between w-full"
           >
-            <RecipeListLength />
-            <p>My Recipes</p>
+            <DropdownMenuItem className="cursor-pointer">
+              <RecipeListLength />
+              <p>My Recipes</p>
+            </DropdownMenuItem>
           </Link>
-        </DropdownMenuItem>
         <DropdownMenuSeparator/>
         <SignOut/>
       </DropdownMenuContent>

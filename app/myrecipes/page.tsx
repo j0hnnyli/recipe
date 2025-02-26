@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { recipeListContext } from '@/context/RecipeList'
 import { auth } from '@/firebase/config'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -11,15 +11,28 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaMinus } from 'react-icons/fa'
 import HoverTip from '@/components/HoverTip'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 
 const MyRecipesPage = () => {
-  const [user] = useAuthState(auth)
+  const [user, loading] = useAuthState(auth)
   const { recipes, handleDelete } = useContext(recipeListContext);
+  
+  useEffect(() => {
+    if (!loading && !user) {
+      redirect('/signin');
+    }
+  }, [user, loading]); 
 
-  if (!user) {
-    redirect('/signin');
+
+  if (loading) {
+    return (
+      <div className='mt-20'>
+        <LoadingSpinner/>
+      </div>
+    )
   }
+
 
   return (
     <PaddingContainer>

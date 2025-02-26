@@ -12,7 +12,7 @@ const SearchDisplay = async ({ input } : Props) => {
   const recipes : Recipe[] = await getRecipesBySearch(input)
 
   return (
-    <div className="mt-5">
+    <div>
       <h2 className="mb-5 text-primary_yellow font-kaushanScript text-3xl">
         {recipes?.length > 0 
           ? <>Search: <span className="font-bold">{input}</span> - <span className="font-bold">{recipes?.length} results</span></>

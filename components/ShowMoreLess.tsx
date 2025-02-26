@@ -19,7 +19,7 @@ const ShowMoreLess = ({ text, className='' } : Props) => {
       >
         <p>{text.length > 300 ? textShowing : text}</p>
 
-        {showText ? null : (
+        {showText || text.length < 300 ? null : (
           <div className='absolute bottom-0 w-full h-5 backdrop-blur'></div>
         )}
       </div>

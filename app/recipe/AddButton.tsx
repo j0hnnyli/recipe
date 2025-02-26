@@ -44,7 +44,7 @@ const AddButton = ( {id, img, name} : Props) => {
       {match ? (
         <button
           onClick={removieRecipe}
-          className="bg-red-500 text-black hover:text-white hover:bg-red-700 flex items-center justify-center py-1 px-3 rounded-sm"
+          className="bg-red-500 text-black hover:text-white hover:bg-red-700 flex items-center justify-center py-1 px-3 rounded-sm mr-5"
         >
           {
             isLoading ?
@@ -55,7 +55,7 @@ const AddButton = ( {id, img, name} : Props) => {
         </button>
       ) : (
         <button 
-          className="bg-primary_yellow text-black hover:text-white hover:bg-yellow-700 flex items-center justify-center py-1 px-3 rounded-sm"
+          className="bg-primary_yellow text-black hover:text-white hover:bg-yellow-700 flex items-center justify-center py-1 px-3 rounded-sm mr-5"
           onClick={addRecipe}
         >
           {

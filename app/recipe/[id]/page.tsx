@@ -17,8 +17,8 @@ type Props = {
 const RecipePage = async ({params} : Props) => {
   const { id } = await params;
   const recipe : Recipe = await getRecipe(id);
-
-  return (
+  
+  return (  
     <PaddingContainer className='md:w-[88%] lg:w-[80%] mx-auto'>
       <div className='pb-5 border-b border-primary_yellow'>
         <h2 className='font-kaushanScript text-5xl tracking-widest text-primary_yellow '>
@@ -41,7 +41,7 @@ const RecipePage = async ({params} : Props) => {
 
             {recipe.strYoutube && (
               <Link href={recipe.strYoutube} target='_blank' 
-                className='ml-5 bg-primary_yellow text-black hover:text-white hover:bg-yellow-700 flex items-center justify-center py-1 px-3 rounded-sm'
+                className='bg-primary_yellow text-black hover:text-white hover:bg-yellow-700 flex items-center justify-center py-1 px-3 rounded-sm'
               >
                 <FaYoutube className='text-xl'/>
                 <span className='ml-2'>Tutorial</span>

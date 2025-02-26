@@ -9,14 +9,13 @@ import { FaBowlFood } from "react-icons/fa6";
 import PaddingContainer from '@/components/PaddingContainer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaMinus } from 'react-icons/fa'
-import HoverTip from '@/components/HoverTip'
 import LoadingSpinner from '@/components/LoadingSpinner'
+import RemoveButton from './RemoveButton'
 
 
 const MyRecipesPage = () => {
   const [user, loading] = useAuthState(auth)
-  const { recipes, handleDelete } = useContext(recipeListContext);
+  const { recipes } = useContext(recipeListContext);
   
   useEffect(() => {
     if (!loading && !user) {
@@ -61,14 +60,7 @@ const MyRecipesPage = () => {
                 className="h-full w-full rounded-lg"
               />
 
-              <HoverTip tip="remove" time={100}>
-                <button
-                  onClick={() => handleDelete(recipe.id)}
-                  className="absolute bottom-3 right-3 bg-red-500 text-black hover:text-white hover:bg-red-700 flex items-center justify-center p-2 rounded-full z-30"
-                >
-                  <FaMinus className="text-xl"/>
-                </button>
-              </HoverTip>
+              <RemoveButton id={recipe.id}/>
             </div>
             <h2 className="text-white font-kaushanScript text-2xl">
               {

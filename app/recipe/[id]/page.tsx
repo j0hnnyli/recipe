@@ -8,7 +8,7 @@ import React, { Suspense } from 'react'
 import AnimateIngredients from '../AnimateIngredients'
 import AnimateScaleImg from '@/app/recipe/AnimateScaleImg'
 import Link from 'next/link'
-import AddButton from '../AddButton'
+import AddButton from '../../../components/AddButton'
 
 type Props = {
   params : Promise<{ id : string }>

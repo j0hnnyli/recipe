@@ -18,6 +18,7 @@ const SignInForm = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [noAccount, setNoAccount] = useState<boolean>(false);
 
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
 
@@ -32,10 +33,18 @@ const SignInForm = () => {
     setIsLoading(true)
 
     try{
-      await signInWithEmailAndPassword(email, pass);
-      setEmail("")
-      setPass("")
-      router.push("/");
+      const res = await signInWithEmailAndPassword(email, pass);
+      
+      if(res){
+        setEmail("")
+        setPass("")
+        router.push("/");
+      }
+
+      if(!res){
+        setNoAccount(true)
+        setTimeout(() =>  setNoAccount(false), 1500)
+      }
     }catch(err){
       setError(true)
       if(err instanceof Error){
@@ -43,6 +52,8 @@ const SignInForm = () => {
       }
       setTimeout(() => setError(false), 1500)
     }
+
+    setIsLoading(false)
   }
 
   return (
@@ -87,6 +98,7 @@ const SignInForm = () => {
         > 
           {isLoading ? <RiLoader5Line className='text-xl animate-spin'/> : "Sign In"}
         </button>
+        {noAccount && <p className='text-red-500 font-bold ml-3'>NO User Found!</p>}
         {error && <p className='text-red-500 font-bold ml-3'>Error, Try Again</p>}
       </div>
       

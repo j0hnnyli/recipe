@@ -8,6 +8,7 @@ import { twMerge } from 'tailwind-merge'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 import Link from 'next/link'
+import AddButton from '../AddButton'
 
 const PopularRecipesSection = () => {
   const imagineRef = useRef<HTMLDivElement>(null);
@@ -89,6 +90,14 @@ const PopularRecipesSection = () => {
                 <span className='font-kaushanScript text-primary_yellow'>Cusinie</span> :
                 <span> {popularRecipe.strArea}</span>
               </h2>
+
+              <div className='mt-1'>
+                <AddButton 
+                  id={popularRecipe.idMeal}
+                  img={popularRecipe.strMealThumb}
+                  name={popularRecipe.strMeal}
+                />
+              </div>
             </div>
 
             <div className='mt-10'>

@@ -52,14 +52,14 @@ const Intro = () => {
         className='w-full h-full object-cover brightness-[.50] absolute z-10'
       />
 
-      <PaddingContainer className='relative z-20 text-white w-[80%] h-[90%]'>
+      <PaddingContainer className='relative z-20 text-white h-[90%]'>
         <h2 
           className='font-kaushanScript text-5xl md:text-7xl lg:text-9xl mt-10 tracking-widest text-center text-primary_yellow'
         >
           RECIPEHUB
         </h2>
 
-        <div className='h-[50%] flex flex-col md:flex-row gap-5 w-full'> 
+        <div className='h-[45%] flex flex-col md:flex-row gap-5 w-full items-center justify-center lg:justify-start'> 
           <div
             className='flex flex-col justify-evenly h-full w-full md:w-[60%]'
           >
@@ -107,7 +107,7 @@ const Intro = () => {
           </div>
         </div>
 
-        <div>
+        <div className='h-[40%] flex items-center justify-center pb-5'>
           <About/>
         </div>
       </PaddingContainer>

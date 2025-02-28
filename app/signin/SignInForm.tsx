@@ -38,19 +38,19 @@ const SignInForm = () => {
       if(res){
         setEmail("")
         setPass("")
-        router.push("/");
+        router.back();
       }
 
       if(!res){
         setNoAccount(true)
-        setTimeout(() =>  setNoAccount(false), 1500)
+        setTimeout(() =>  setNoAccount(false), 2000)
       }
     }catch(err){
       setError(true)
       if(err instanceof Error){
         throw new Error(err.message)
       }
-      setTimeout(() => setError(false), 1500)
+      setTimeout(() => setError(false), 2000)
     }
 
     setIsLoading(false)

@@ -123,7 +123,6 @@ const RegisterForm = () => {
         <button 
           disabled={
             isLoading ||
-            pass !== confrimPass ||
             pass === "" || 
             confrimPass === ""
           }

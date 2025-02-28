@@ -21,17 +21,17 @@ const Intro = () => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const timeline = gsap.timeline({
-      scrollTrigger : {
-        trigger: document.documentElement,
-        start: 'top',
-        end: '+=75px',
-        scrub: 0.5,
-        toggleActions: 'play none none none', 
-      }
-    })
-
     if(isLoaded){
+      const timeline = gsap.timeline({
+        scrollTrigger : {
+          trigger: document.documentElement,
+          start: 'top',
+          end: '+=75px',
+          scrub: 0.5,
+          toggleActions: 'play none none none', 
+        }
+      })
+
       timeline.from(introRef.current, {clipPath: 'inset(12% 12% 0 12%)'})
     }
  

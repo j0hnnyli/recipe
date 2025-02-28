@@ -26,7 +26,8 @@ const Intro = () => {
         trigger: document.documentElement,
         start: 'top',
         end: '+=75px',
-        scrub: true,
+        scrub: 0.5,
+        toggleActions: 'play none none none', 
       }
     })
 

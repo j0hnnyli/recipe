@@ -28,9 +28,8 @@ const UserDropDown = () => {
         <DropdownMenuSeparator/>
           <Link 
             href="/myrecipes"
-            className="flex items-center justify-between w-full"
           >
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem className="cursor-pointer flex items-center justify-between w-full">
               <RecipeListLength />
               <p>My Recipes</p>
             </DropdownMenuItem>

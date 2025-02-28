@@ -24,11 +24,12 @@ const AnimateText = ({ children, className } : Props) => {
           trigger : text.current,
           start: '0px bottom',
           end: 'bottom+=200px bottom',
-          scrub: 0.5,
+          scrub: 0.25,
           toggleActions: 'play none none none', 
         },
         left: '-200px',
         opacity: 0,
+        willChange: 'transform, opacity',
       })
     }
   }, [isMounted])

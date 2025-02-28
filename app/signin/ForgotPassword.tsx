@@ -41,7 +41,7 @@ const ForgotPassword = () => {
 
   return (
     <Dialog>
-      <DialogTrigger className="mt-5 text-sm">FORGOT PASSWORD?</DialogTrigger>
+      <DialogTrigger className="mt-5 text-sm hover:text-primary_yellow">FORGOT PASSWORD?</DialogTrigger>
       <DialogContent className="bg-black text-white border-primary_yellow w-[95%]">
         <DialogHeader>
           <DialogTitle className="text-primary_yellow">FORGOT PASSWORD?</DialogTitle>

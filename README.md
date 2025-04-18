@@ -1,7 +1,9 @@
+<a href="https://recipe-chi-lilac.vercel.app/">
+  <img src="/public/recipehub.png" src="recipehub"/>
+</a>
+
 ## RecipeHub
 Users can explore a wide variety of recipes from different cultures around the world. Additionally, they can create an account to save their favorite recipes, which will persist across devices and be accessible anywhere they go.
-
-<a href='https://recipe-chi-lilac.vercel.app' target='_blank'>Demo </a>
 
 ## What Under The Hood
 - Next.js  

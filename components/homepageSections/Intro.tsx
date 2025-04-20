@@ -23,7 +23,7 @@ const Intro = () => {
             fadeInDirection="left"
             direction="x"
             delay={0.2}
-            className="w-full flex items-center justify-center"
+            className="w-full flex items-center justify-center opacity-0"
           >
             <div className="w-60 h-60 md:w-80 md:h-80 border-l-4 border-r-4 border-yellow-400 rounded-full flex flex-col items-center justify-center text-white text-center font-kaushanScript">
               <h2 className="text-4xl font-semibold tracking-widest">RecipeHub</h2>

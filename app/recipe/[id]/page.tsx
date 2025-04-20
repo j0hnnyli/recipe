@@ -19,7 +19,7 @@ const RecipePage = async ({params} : Props) => {
   const recipe : Recipe = await getRecipe(id);
   
   return (  
-    <PaddingContainer className='md:w-[88%] lg:w-[80%] mx-auto'>
+    <PaddingContainer className='max_width'>
       <div className='pb-5 border-b border-primary_yellow'>
         <h2 className='font-kaushanScript text-5xl tracking-widest text-primary_yellow '>
           {recipe.strMeal}
@@ -99,7 +99,7 @@ const RecipePage = async ({params} : Props) => {
       </div>
       
       <Suspense fallback={<div className='h-72 bg-gray-500 rounded-xl animate-pulse'></div>}>
-        <div className='my-5'>
+        <div className='mt-5'>
           <h2 className='font-kaushanScript text-5xl tracking-widest text-primary_yellow'>Recommended</h2>
           <Recommended 
             id={recipe.idMeal} 

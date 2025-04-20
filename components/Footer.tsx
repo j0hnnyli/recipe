@@ -3,6 +3,7 @@ import Logo from './Logo'
 import ScrollTopButton from './ScrollTopButton'
 
 
+
 const Footer = () => {
   return (
     <footer className="text-white px-5 border-t-4 border-primary_yellow relative py-20 mt-20">

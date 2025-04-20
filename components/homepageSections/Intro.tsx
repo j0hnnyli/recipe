@@ -34,6 +34,7 @@ const Intro = () => {
 
           <IntroContent />
         </div>
+
       </div>
     </div>
   )

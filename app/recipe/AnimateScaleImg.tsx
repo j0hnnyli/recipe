@@ -1,9 +1,8 @@
 'use client'
 
-import { useRef, useLayoutEffect, useState } from 'react'
+import { useRef, useLayoutEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
-import { twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 
 type Props = {
@@ -15,14 +14,12 @@ type Props = {
 }
 
 const AnimateScaleImg = ({src, alt, className, width, height} : Props) => {
-  const imgRef = useRef<HTMLImageElement>(null);
-  const [isMounted, setIsMounted] = useState<boolean>(false);  
+  const imgRef = useRef<HTMLImageElement>(null); 
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    setIsMounted(true)
 
-    if(isMounted){
+    const cxt = gsap.context(() => {
       gsap.fromTo(imgRef.current, 
         {
           scale: 1,
@@ -39,9 +36,10 @@ const AnimateScaleImg = ({src, alt, className, width, height} : Props) => {
           ease: 'power1.inOut' 
         }
       )
-    }
-
-  }, [isMounted])
+    }, imgRef)
+   
+    return () => cxt.revert();
+  }, [])
 
   return (
     <Image
@@ -51,7 +49,7 @@ const AnimateScaleImg = ({src, alt, className, width, height} : Props) => {
       width={width}
       height={height}
       priority
-      className={twMerge(isMounted ? 'visible' : 'hidden',className)}
+      className={className}
     />  
   )
 }

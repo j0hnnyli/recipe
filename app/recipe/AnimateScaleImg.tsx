@@ -34,7 +34,7 @@ const AnimateScaleImg = ({src, alt, className, width, height} : Props) => {
             end: 'bottom',
             scrub: true,
           },
-          scale: 2,
+          scale: 1.2,
           duration: 0.5,
           ease: 'power1.inOut' 
         }

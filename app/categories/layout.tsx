@@ -7,14 +7,13 @@ import CategorySearchBar from './CategorySearchBar'
 const layout = ({ children } : { children : ReactNode }) => {
   return (
     <PaddingContainer>
-      <div className="flex items-center justify-between gap-4 pr-2 ">
+      <div className="flex items-center justify-between gap-4 ">
         <CategorySelect>
           <CategoriesSelectOptions />
         </CategorySelect>
         
         <CategorySearchBar />
       </div>
-
       <main>{children}</main>
     </PaddingContainer>
   )

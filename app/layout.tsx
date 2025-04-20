@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import SmoothScrollContainer from '@/components/SmoothScrollContainer'
 import { RecipeListProvider } from "@/context/RecipeList";
 import { Toaster } from "@/components/ui/sonner";
+import Footer from "@/components/Footer";
 
 const kaushanScript = Kaushan_Script({
   subsets: ["latin"],
@@ -39,9 +39,8 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} ${kaushanScript.variable} antialiased bg-black`}
             >
             <Navbar />
-            <SmoothScrollContainer>
-              <main className="max-w-[2000px] mx-auto mt-20">{children}</main>
-            </SmoothScrollContainer>
+            <main className="max_width pt-20">{children}</main>
+            <Footer />
             <Toaster position="top-center" richColors closeButton/>
           </body>
         </html>

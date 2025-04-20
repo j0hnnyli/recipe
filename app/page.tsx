@@ -1,12 +1,13 @@
-import SmoothScrollContainer from "@/components/SmoothScrollContainer";
+import About from "@/components/homepageSections/About";
 import Intro from "@/components/homepageSections/Intro";
 import PopularRecipesSection from "@/components/homepageSections/PopularRecipesSection";
 
 export default function Home() {
   return (
-    <SmoothScrollContainer>
-      <Intro />
-      <PopularRecipesSection />
-    </SmoothScrollContainer> 
+      <>
+        <Intro />
+        <About />
+        <PopularRecipesSection />
+      </>
   );
 }

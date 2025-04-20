@@ -1,117 +1,81 @@
-'use client'
-
-import { useRef, useLayoutEffect, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Image from 'next/image'
 import { FaUtensils, FaClock, FaHeart, FaFacebook, FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { TiWorld } from "react-icons/ti";
-import PaddingContainer from '../PaddingContainer'
-import { twMerge } from 'tailwind-merge'
-import About from './About'
+import Image from "next/image"
 
 
 const Intro = () => {
-  const introRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-
-  useLayoutEffect(() => {
-    setIsLoaded(true) 
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    if(isLoaded){
-      const timeline = gsap.timeline({
-        scrollTrigger : {
-          trigger: document.documentElement,
-          start: 'top',
-          end: '+=75px',
-          scrub: 0.5,
-          toggleActions: 'play none none none', 
-        }
-      })
-
-      timeline.from(introRef.current, {clipPath: 'inset(12% 12% 0 12%)'})
-    }
- 
-  }, [isLoaded])
-
   return (
-    <div 
-      ref={introRef} 
-      className={
-        twMerge("h-[150vh] max-h-[1900px] w-full mb-5 relative flex flex-col justify-end items-center mt-28", isLoaded ? 'visible' : 'hidden')
-      }
-    >
-      <Image 
-        src='/introbg.jpg' 
-        alt='showcase'
-        width={300}
-        height={500}
-        priority
-        className='w-full h-full object-cover brightness-[.50] absolute z-10'
-      />
+    <div className="h-auto md:h-[750px]">
+      <div className="relative h-full overflow-hidden ">
+        <div className="bg-black h-[300px] w-[150%] absolute -top-[200px] z-20 -rotate-[10deg] -ml-32"></div>
+        <Image
+          src='/introbg.jpg' 
+          alt='intro' 
+          width={300} 
+          height={300}
+          className="absolute h-full w-full object-cover z-10 scale-110 brightness-75"
+        />
+        <div className="bg-black h-[300px] w-[150%] absolute -bottom-[100px] z-20 -rotate-[10deg] -ml-32"></div>
 
-      <PaddingContainer className='relative z-20 text-white h-[90%]'>
-        <h2 
-          className='font-kaushanScript text-5xl md:text-7xl lg:text-9xl mt-10 tracking-widest text-center text-primary_yellow'
-        >
-          RECIPEHUB
-        </h2>
-
-        <div className='h-[45%] flex flex-col md:flex-row gap-5 w-full items-center justify-center lg:justify-start'> 
-          <div
-            className='flex flex-col justify-evenly h-full w-full md:w-[60%]'
-          >
-            <div
-              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
-            >
-              <div className="text-4xl 2xl:text-6xl mb-2">
-                <FaUtensils className="text-primary_yellow"></FaUtensils>
-              </div>
-              <p className="text-xl 2xl:text-3xl">Variety of Recipes</p>
+        <div className="h-full w-full relative z-30 flex flex-col md:flex-row items-center gap-5 p-5">
+          <div className="w-full flex items-center justify-center">
+            <div className="w-60 h-60 md:w-80 md:h-80 border-l-4 border-r-4 border-yellow-400 rounded-full flex flex-col items-center justify-center text-white text-center font-kaushanScript">
+              <h2 className="text-4xl font-semibold tracking-widest">RecipeHub</h2>
+              <h2 className="text-xl">Delicious Recipess</h2>
+              <h2 className="text-xl font-bold tracking-wide">Awaits</h2>
             </div>
+          </div>
 
-            <div 
-              className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
-            >
-              <div className="text-4xl 2xl:text-6xl mb-2">
-                <FaClock className="text-primary_yellow"></FaClock>
-              </div>
-              <p className="text-xl 2xl:text-3xl">Quick & Easy Recipes</p>
-            </div> 
-
+          <div className="w-full">   
             <div
-             className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
+              className='flex flex-col gap-10 md:w-[80%] mx-auto'
             >
-              <div className="text-4xl 2xl:text-6xl mb-2">
-                <TiWorld className="text-primary_yellow"></TiWorld>
+              <div
+                className="flex items-center text-white w-full justify-between border-b-2 "
+              >
+                <div className="text-4xl 2xl:text-6xl mb-2">
+                  <FaUtensils className="text-primary_yellow"></FaUtensils>
+                </div>
+                <p className="text-xl 2xl:text-3xl">Variety of Recipes</p>
               </div>
-              <p className="text-xl 2xl:text-3xl">Variety of Cultures</p>
-            </div>
 
-            <div
-             className="flex items-center text-white w-full md:w-[90%] lg:w-[60%] justify-between border-b-2 mx-auto feats"
-            >
-              <div className="text-4xl 2xl:text-6xl mb-2">
-                <FaHeart className="text-primary_yellow"></FaHeart>
+              <div 
+                className="flex items-center text-white w-full justify-between border-b-2"
+              >
+                <div className="text-4xl 2xl:text-6xl mb-2">
+                  <FaClock className="text-primary_yellow"></FaClock>
+                </div>
+                <p className="text-xl 2xl:text-3xl">Quick & Easy Recipes</p>
+              </div> 
+
+              <div
+                className="flex items-center text-white w-full justify-between border-b-2"
+              >
+                <div className="text-4xl 2xl:text-6xl mb-2">
+                  <TiWorld className="text-primary_yellow"></TiWorld>
+                </div>
+                <p className="text-xl 2xl:text-3xl">Variety of Cultures</p>
               </div>
-              <p className="text-xl 2xl:text-3xl">Personalized Recipe List</p>
-            </div>            
-         
-            <div className='flex items-center text-primary_yellow justify-center'>
-              <FaFacebook className="text-4xl mr-5 hover:text-white cursor-pointer" />
-              <FaSquareXTwitter className="text-4xl mr-5 hover:text-white cursor-pointer" />
-              <FaInstagramSquare className="text-4xl mr-5 hover:text-white cursor-pointer" />
+
+              <div
+                className="flex items-center text-white w-full justify-between border-b-2"
+              >
+                <div className="text-4xl 2xl:text-6xl mb-2">
+                  <FaHeart className="text-primary_yellow"></FaHeart>
+                </div>
+                <p className="text-xl 2xl:text-3xl">Personalized Recipe List</p>
+              </div>            
+            
+              <div className='flex items-center text-primary_yellow justify-center'>
+                <FaFacebook className="text-4xl mr-5 hover:text-white cursor-pointer" />
+                <FaSquareXTwitter className="text-4xl mr-5 hover:text-white cursor-pointer" />
+                <FaInstagramSquare className="text-4xl mr-5 hover:text-white cursor-pointer" />
+              </div>
             </div>
           </div>
         </div>
-
-        <div className='h-[40%] flex items-center justify-center pb-5'>
-          <About/>
-        </div>
-      </PaddingContainer>
+      </div>
     </div>
   )
 }

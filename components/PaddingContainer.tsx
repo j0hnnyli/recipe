@@ -7,7 +7,7 @@ const PaddingContainer = ({className, children} : {
 }) => {
   return (
     <div
-      className={twMerge('p-5', className)}    
+      className={twMerge('p-4', className)}    
     >
       { children }
     </div>

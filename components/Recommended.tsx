@@ -54,8 +54,17 @@ const Recommended = async ({id, recommentedCategory} : Props) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselNext className='hidden md:flex justify-center items-center'/>
-      <CarouselPrevious className='hidden md:flex justify-center items-center'/>
+
+      <div className="absolute top-1/2 left-2 hidden md:flex items-center justify-center">
+        <CarouselPrevious 
+          className="relative left-0 translate-x-0 hover:translate-x-0 hover:bg-animehorizon_orange hover:text-white" 
+        />
+      </div>
+      <div className="absolute top-1/2 right-2 hidden md:flex items-center justify-center">
+        <CarouselNext 
+          className="relative right-0 translate-x-0 hover:translate-x-0 hover:bg-animehorizon_orange hover:text-white" 
+        />
+      </div>
     </Carousel>
   )
 }

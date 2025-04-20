@@ -10,12 +10,12 @@ type Props = {
 }
 
 const AnimateText = ({ children, className } : Props) => {
-  const text = useRef<HTMLParagraphElement>(null);
+  const text = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    if(text.current){
+    const cxt = gsap.context(() => {
       gsap.from(text.current ,{
         scrollTrigger: {
           trigger : text.current,
@@ -27,7 +27,9 @@ const AnimateText = ({ children, className } : Props) => {
         left: '-200px',
         opacity: 0,
       })
-    }
+    }, text)
+    
+    return () => cxt.revert();
   }, [])
 
   return (

@@ -1,9 +1,8 @@
 'use client'
 
-import { ReactNode, useRef, useLayoutEffect, useState } from 'react'
+import { ReactNode, useRef, useLayoutEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
-import { twMerge } from 'tailwind-merge'
 
 type Props = {
   children: ReactNode,
@@ -11,36 +10,38 @@ type Props = {
 }
 
 const AnimateIngredients = ({ children, className } : Props) => {
-  const text = useRef<HTMLParagraphElement>(null);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-    setIsMounted(true)
+    gsap.registerPlugin(ScrollTrigger);
 
-    if(isMounted){
-      gsap.fromTo(text.current ,{
-        left: 0,
-        opacity: 1,
-      }, {
-        scrollTrigger: {
-          trigger : text.current,
-          start: 'top top+=100px',
-          end: 'bottom',
-          scrub: true,
+    const ctx = gsap.context(() => {
+      gsap.fromTo(textRef.current,
+        {
+          left: 0,
+          opacity: 1,
         },
-        left: '-200px',
-        opacity: 0,
-        duration: 0.4,
-        ease: "power1.in"
-      })
-    }
-  }, [isMounted])
+        {
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: 'top top+=100px',
+            end: 'bottom',
+            scrub: true,
+          },
+          left: '-200px',
+          opacity: 0,
+          duration: 0.4,
+        }
+      );
+    }, textRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div
-      ref={text} 
-      className={twMerge(isMounted ? 'visible' : 'hidden' ,className)}
+      ref={textRef} 
+      className={className}
     >
       {children}
     </div>

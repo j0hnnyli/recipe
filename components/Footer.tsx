@@ -1,5 +1,7 @@
 import React from 'react'
 import Logo from './Logo'
+import ScrollTopButton from './ScrollTopButton'
+
 
 
 const Footer = () => {
@@ -44,6 +46,8 @@ const Footer = () => {
       <div className="text-center text-xs text-gray-400 mt-8">
         © {new Date().getFullYear()} RecipeHub. All rights reserved.
       </div>
+
+      <ScrollTopButton />
     </footer>
 
   )

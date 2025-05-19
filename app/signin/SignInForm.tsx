@@ -1,110 +1,111 @@
-'use client'
+"use client";
 
-import { FormEvent, MouseEvent, useState } from 'react'
+import { useRouter } from "next/navigation";
+import { createSessionCookie } from "../actions/auth/signin";
+import { FormEvent, MouseEvent, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { RiLoader5Line } from "react-icons/ri";
-import { useRouter } from 'next/navigation';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { auth } from '@/firebase/config';
-import ForgotPassword from './ForgotPassword';
-
-
+import ForgotPassword from "./ForgotPassword";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase/config";
 
 const SignInForm = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [noAccount, setNoAccount] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth)
-
-  const handleShowPassword = (e : MouseEvent<HTMLButtonElement>) => {
+  const handleShowPassword = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
-  const handleSignIn = async (e : FormEvent) => {
+  const signIn = async (e: FormEvent) => {
     e.preventDefault();
 
-    setIsLoading(true)
+    setIsLoading(true);
 
-    try{
-      const res = await signInWithEmailAndPassword(email, pass);
-      
-      if(res){
-        setEmail("")
-        setPass("")
-        router.back();
-      }
-
-      if(!res){
-        setNoAccount(true)
-        setTimeout(() =>  setNoAccount(false), 2000)
-      }
-    }catch(err){
-      setError(true)
-      if(err instanceof Error){
-        throw new Error(err.message)
-      }
-      setTimeout(() => setError(false), 2000)
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, pass);
+      const idToken = await userCred.user.getIdToken();
+      await createSessionCookie(idToken);
+      router.back();
+    } catch {
+      setError("Invalid Email or Password");
     }
 
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   return (
-    <form onSubmit={(e) => handleSignIn(e)} className='px-1'>
-      <div className='mb-5 border-b border-primary_yellow'>
-        <label htmlFor="email" className='block my-2'>Email :</label>
-        <input 
-          id="email"  
-          type="email" 
-          placeholder='Example@gmail.com'
+    <form className="px-1" onSubmit={(e) => signIn(e)}>
+      <div className="mb-5 border-b border-primary_yellow">
+        <label htmlFor="email" className="block my-2">
+          Email :
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Example@gmail.com"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className='w-full py-2 text-white bg-black outline-none'
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (error.length > 0) {
+              setError("");
+            }
+          }}
+          className="w-full py-2 text-white bg-black outline-none"
         />
       </div>
 
-      <div className='mb-5 border-b border-primary_yellow'>
-        <label htmlFor="password" className='block my-2'>Password :</label>
-        <div className='flex'>
-          <input 
+      <div className="mb-5 border-b border-primary_yellow">
+        <label htmlFor="password" className="block my-2">
+          Password :
+        </label>
+        <div className="flex">
+          <input
             type={showPassword ? "text" : "password"}
-            id="password"  
-            placeholder='Password'
+            id="password"
+            name="password"
+            placeholder="Password"
             value={pass}
-            onChange={(e) => setPass(e.target.value)}
-            className='w-full py-2 text-white bg-black  outline-none'
+            onChange={(e) => {
+              setPass(e.target.value);
+              if (error.length > 0) {
+                setError("");
+              }
+            }}
+            className="w-full py-2 text-white bg-black  outline-none"
           />
           <button onClick={(e) => handleShowPassword(e)}>
-            <FaRegEye className='text-xl text-white hover:text-primary_yellow'/>
+            <FaRegEye className="text-xl text-white hover:text-primary_yellow" />
           </button>
         </div>
       </div>
 
-      <div className='flex items-center'>
-        <button 
-          disabled={
-            isLoading ||
-            email === "" || 
-            pass === ""
-          }
-          className='py-2 px-4 bg-primary_yellow text-black font-kaushanScript hover:bg-yellow-700 hover:text-white'
-        > 
-          {isLoading ? <RiLoader5Line className='text-xl animate-spin'/> : "Sign In"}
+      <div className="flex items-center">
+        <button
+          disabled={isLoading || email === "" || pass === ""}
+          className="py-2 px-4 bg-primary_yellow text-black font-kaushanScript hover:bg-yellow-700 hover:text-white cursor-pointer"
+        >
+          {isLoading ? (
+            <RiLoader5Line className="text-xl animate-spin" />
+          ) : (
+            "Sign In"
+          )}
         </button>
-        {noAccount && <p className='text-red-500 font-bold ml-3'>NO User Found!</p>}
-        {error && <p className='text-red-500 font-bold ml-3'>Error, Try Again</p>}
+        {error.length > 0 && (
+          <p className="text-red-500 font-bold ml-3">{error}</p>
+        )}
       </div>
-      
+
       <ForgotPassword />
     </form>
-  )
-}
+  );
+};
 
-export default SignInForm
+export default SignInForm;

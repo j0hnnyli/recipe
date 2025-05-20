@@ -2,6 +2,7 @@
 
 import { FormEvent, MouseEvent, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
+import { RiEyeCloseLine } from "react-icons/ri";
 import { RiLoader5Line } from "react-icons/ri";
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from "@/lib/firebase/config";
@@ -54,7 +55,7 @@ const RegisterForm = () => {
     } catch (err) {
       if (err instanceof FirebaseError) {
         const errorCode = err.code; 
-        const readableCode = errorCode.replace("auth/", ""); 
+        const readableCode = errorCode.replace("auth/", "").replace(/-/g, " "); 
         setError(readableCode);
       }
     }
@@ -101,7 +102,11 @@ const RegisterForm = () => {
             className="w-full py-2 text-white bg-black  outline-none"
           />
           <button onClick={(e) => handleShowPassword(e)}>
-            <FaRegEye className="text-xl text-white hover:text-primary_yellow" />
+            {
+              showPassword ? 
+              <FaRegEye className="text-xl text-white hover:text-primary_yellow" /> : 
+              <RiEyeCloseLine className="text-xl text-white hover:text-primary_yellow"/>
+            }
           </button>
         </div>
       </div>
@@ -124,7 +129,11 @@ const RegisterForm = () => {
             className="w-full py-2 text-white bg-black outline-none"
           />
           <button onClick={(e) => handleShowConfirmPassword(e)}>
-            <FaRegEye className="text-xl text-white hover:text-primary_yellow" />
+            {
+              showConfirmPassword ? 
+              <FaRegEye className="text-xl text-white hover:text-primary_yellow" /> : 
+              <RiEyeCloseLine className="text-xl text-white hover:text-primary_yellow"/>
+            }
           </button>
         </div>
       </div>

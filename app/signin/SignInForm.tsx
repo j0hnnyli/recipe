@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { createCookie } from "../actions/auth/signin";
 import { FormEvent, MouseEvent, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
+import { RiEyeCloseLine } from "react-icons/ri";
 import { RiLoader5Line } from "react-icons/ri";
 import ForgotPassword from "./ForgotPassword";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -38,8 +39,7 @@ const SignInForm = () => {
     } catch(err) {
       if(err instanceof FirebaseError){
         const errorCode = err.code;
-        console.log(errorCode)
-        const readableCode = errorCode.replace("auth/", "");
+        const readableCode = errorCode.replace("auth/", "").replace(/-/g, " ");
         setError(readableCode);
       }
     }
@@ -89,7 +89,11 @@ const SignInForm = () => {
             className="w-full py-2 text-white bg-black  outline-none"
           />
           <button onClick={(e) => handleShowPassword(e)}>
-            <FaRegEye className="text-xl text-white hover:text-primary_yellow" />
+            {
+              showPassword ? 
+              <FaRegEye className="text-xl text-white hover:text-primary_yellow" /> : 
+              <RiEyeCloseLine className="text-xl text-white hover:text-primary_yellow"/>
+            }
           </button>
         </div>
       </div>

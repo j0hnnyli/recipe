@@ -11,13 +11,13 @@ type Props = {
 
 const RecipeWrapper = async ({ children } : Props) => {
   const session = (await cookies()).get("session");
+
+  if(!session) return <>{children}</>
+
   const sessionCookie = session?.value;
+  const userId = await getUserIdFromCookie(sessionCookie) 
   
-  if(!sessionCookie) return <>{children}</>;
-
-  const userId = await getUserIdFromCookie(sessionCookie)
-
-  if(!userId) return <>{children}</>;
+  if (!userId) return <>{children}</>;
 
   const docRef = admin.firestore().doc(`recipes-users/${userId}`);
   const docSnap = await docRef.get();

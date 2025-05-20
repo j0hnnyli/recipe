@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Dialog,
@@ -7,11 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import { RiLoader5Line } from "react-icons/ri";
-import { useState } from "react"
-import { sendPasswordResetEmail } from "firebase/auth"
-import { auth } from "@/firebase/config"
+import { useState } from "react";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "@/lib/firebase/config";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
@@ -20,38 +20,51 @@ const ForgotPassword = () => {
   const [send, setSend] = useState<boolean>(false);
 
   const handleResetPassword = async () => {
-    if(email === "") return;
+    if (email === "") return;
 
     setIsLoading(true);
 
-    try{
+    try {
       await sendPasswordResetEmail(auth, email);
-      setSend(true)
-      setEmail("")
-    }catch(err){
-      setError(true)
-      if(err instanceof Error){
-        throw new Error(err.message)
+      setSend(true);
+      setEmail("");
+    } catch (err) {
+      setError(true);
+      if (err instanceof Error) {
+        throw new Error(err.message);
       }
-      setTimeout(() => { setError(false) } , 1500)
+      setTimeout(() => {
+        setError(false);
+      }, 1500);
     }
-  
-    setIsLoading(false)
-  }
+
+    setIsLoading(false);
+  };
 
   return (
     <Dialog>
-      <DialogTrigger className="mt-5 text-sm hover:text-primary_yellow">FORGOT PASSWORD?</DialogTrigger>
+      <DialogTrigger className="mt-5 text-sm hover:text-primary_yellow">
+        FORGOT PASSWORD?
+      </DialogTrigger>
       <DialogContent className="bg-black text-white border-primary_yellow w-[95%]">
         <DialogHeader>
-          <DialogTitle className="text-primary_yellow">FORGOT PASSWORD?</DialogTitle>
+          <DialogTitle className="text-primary_yellow">
+            FORGOT PASSWORD?
+          </DialogTitle>
           <DialogDescription className="text-white flex items-center">
-            <span>Email your sign up :  </span>
-            {error && <span className="text-red-500 text-md ml-3">Error, Try Again </span>}
-            {send && <span className="text-green-500 text-md ml-3">Email Send </span>}
+            <span>Email your sign up : </span>
+            {error && (
+              <span className="text-red-500 text-md ml-3">
+                Error, Try Again{" "}
+              </span>
+            )}
+            {send && (
+              <span className="text-green-500 text-md ml-3">Email Send </span>
+            )}
           </DialogDescription>
         </DialogHeader>
-        <input type="text" 
+        <input
+          type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email . . ."
@@ -61,11 +74,15 @@ const ForgotPassword = () => {
           onClick={handleResetPassword}
           className="py-2 px-4 bg-primary_yellow text-black"
         >
-          {isLoading ? <RiLoader5Line className='text-xl animate-spin mx-auto'/> : "SEND"}
+          {isLoading ? (
+            <RiLoader5Line className="text-xl animate-spin mx-auto" />
+          ) : (
+            "SEND"
+          )}
         </button>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

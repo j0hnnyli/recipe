@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import QuickAddButton from "./QuickAddButton";
+import AddButton from "./AddButton";
 
 type Props = {
   img: string,
@@ -23,7 +23,7 @@ const Card = ({img, title, id} : Props) => {
           className="h-full w-full rounded-lg"
         />
 
-        <QuickAddButton id={id} img={img} name={title}/>
+        <AddButton id={id} img={img} name={title} type="Quick" />
 
       </div>
       <h2 className="text-white font-kaushanScript text-2xl">

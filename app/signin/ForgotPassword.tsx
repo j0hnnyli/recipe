@@ -12,30 +12,32 @@ import { RiLoader5Line } from "react-icons/ri";
 import { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
+import { verifyEmailBeforeReset } from "../actions/resetPassword";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const [send, setSend] = useState<boolean>(false);
 
   const handleResetPassword = async () => {
-    if (email === "") return;
+    if (email.trim() === "") return;
+    const trimmedEmail = email.trim();
 
     setIsLoading(true);
 
     try {
-      await sendPasswordResetEmail(auth, email);
-      setSend(true);
-      setEmail("");
-    } catch (err) {
-      setError(true);
-      if (err instanceof Error) {
-        throw new Error(err.message);
+      const { exist } = await verifyEmailBeforeReset(trimmedEmail);
+
+      if (exist) {
+        await sendPasswordResetEmail(auth, trimmedEmail);
+        setSend(true);
+        setEmail("");
       }
-      setTimeout(() => {
-        setError(false);
-      }, 1500);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      }
     }
 
     setIsLoading(false);
@@ -53,10 +55,8 @@ const ForgotPassword = () => {
           </DialogTitle>
           <DialogDescription className="text-white flex items-center">
             <span>Email your sign up : </span>
-            {error && (
-              <span className="text-red-500 text-md ml-3">
-                Error, Try Again{" "}
-              </span>
+            {error.length > 0 && (
+              <span className="text-red-500 text-md ml-3">{error}</span>
             )}
             {send && (
               <span className="text-green-500 text-md ml-3">Email Send </span>
@@ -66,11 +66,17 @@ const ForgotPassword = () => {
         <input
           type="text"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (error.length > 0) {
+              setError("");
+            }
+          }}
           placeholder="Email . . ."
           className="bg-black outline-none border-b border-primary_yellow p-2"
         />
         <button
+          disabled={email.trim() === "" || isLoading}
           onClick={handleResetPassword}
           className="py-2 px-4 bg-primary_yellow text-black"
         >

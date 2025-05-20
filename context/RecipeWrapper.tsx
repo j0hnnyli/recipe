@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import getUserIdFromCookie from "@/lib/decodeCookie";
 import { RecipeListProvider } from "./RecipeList";
 import { admin } from "@/lib/firebase/firestoreAdmin";
+import { RecipeListType } from "@/lib/types/RecipeListType";
 
 type Props = {
   children : ReactNode;
@@ -20,7 +21,7 @@ const RecipeWrapper = async ({ children } : Props) => {
 
   const docRef = admin.firestore().doc(`recipes-users/${userId}`);
   const docSnap = await docRef.get();
-  const userRecipeList = docSnap.exists ? docSnap.data()?.recipes : []
+  const userRecipeList : RecipeListType[] = docSnap.exists ? docSnap.data()?.recipes ?? [] : []
 
   return (
     <RecipeListProvider userId={userId} initialRecipes={userRecipeList}>

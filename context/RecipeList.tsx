@@ -4,12 +4,7 @@ import { createContext, ReactNode, useState } from "react";
 import { db } from "@/lib/firebase/config";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "sonner";
-
-type RecipeListType = {
-  id: string;
-  img: string;
-  name: string;
-};
+import { RecipeListType } from "@/lib/types/RecipeListType";
 
 type RecipeListContextType = {
   recipes: RecipeListType[];

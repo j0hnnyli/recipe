@@ -1,13 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createSessionCookie } from "../actions/auth/signin";
+import { createCookie } from "../actions/auth/signin";
 import { FormEvent, MouseEvent, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { RiLoader5Line } from "react-icons/ri";
 import ForgotPassword from "./ForgotPassword";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
+import { FirebaseError } from "firebase/app";
 
 const SignInForm = () => {
   const router = useRouter();
@@ -31,10 +32,16 @@ const SignInForm = () => {
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, pass);
       const idToken = await userCred.user.getIdToken();
-      await createSessionCookie(idToken);
+      await createCookie(idToken);
+      
       router.back();
-    } catch {
-      setError("Invalid Email or Password");
+    } catch(err) {
+      if(err instanceof FirebaseError){
+        const errorCode = err.code;
+        console.log(errorCode)
+        const readableCode = errorCode.replace("auth/", "");
+        setError(readableCode);
+      }
     }
 
     setIsLoading(false);

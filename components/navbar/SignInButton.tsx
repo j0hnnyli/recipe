@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { IoPerson } from "react-icons/io5";
-// import { RiLoader5Line } from "react-icons/ri";
 import HoverTip from "../HoverTip";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { auth } from "@/lib/firebase/config";
 import UserDropDown from "./userdropdown/UserDropDown";
 import { cookies } from "next/headers"
 

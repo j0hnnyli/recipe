@@ -1,9 +1,8 @@
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { db, auth } from "@/lib/firebase/config";
+import { createContext, ReactNode, useState } from "react";
+import { db } from "@/lib/firebase/config";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "sonner";
 
 type RecipeListType = {
@@ -24,15 +23,22 @@ const recipeListContext = createContext<RecipeListContextType>({
   handleAdd: () => {},
 });
 
-function RecipeListProvider({ children }: { children: ReactNode }) {
-  const [recipes, setRecipes] = useState<RecipeListType[]>([]);
-  const [user] = useAuthState(auth);
+function RecipeListProvider({
+  children,
+  userId,
+  initialRecipes,
+}: {
+  children: ReactNode;
+  userId: string;
+  initialRecipes: RecipeListType[];
+}) {
+  const [recipes, setRecipes] = useState<RecipeListType[]>(initialRecipes);
 
   const handleDelete = async (id: string) => {
-    if (!user?.uid) return;
+    if (!userId) return;
 
     try {
-      const userRef = doc(db, "recipes-users", user?.uid);
+      const userRef = doc(db, "recipes-users", userId);
       const filteredList = recipes.filter((recipe) => recipe.id !== id);
 
       await setDoc(userRef, { recipes: filteredList }, { merge: true });
@@ -48,10 +54,10 @@ function RecipeListProvider({ children }: { children: ReactNode }) {
   };
 
   const handleAdd = async (recipe: RecipeListType) => {
-    if (!user?.uid) return;
+    if (!userId) return;
 
     try {
-      const userRef = doc(db, "recipes-users", user?.uid);
+      const userRef = doc(db, "recipes-users", userId);
       const userDoc = await getDoc(userRef);
       const currRecipes = userDoc.data()?.recipes || [];
       const updatedRecipes = [recipe, ...currRecipes];
@@ -67,27 +73,6 @@ function RecipeListProvider({ children }: { children: ReactNode }) {
       toast.error("Recipe Failed to Add");
     }
   };
-
-  useEffect(() => {
-    if (!user?.uid) return;
-
-    const docRef = doc(db, "recipes-users", user.uid);
-    const getUserRecipeList = async () => {
-      try {
-        const data = await getDoc(docRef);
-
-        const recipeList = data.data();
-        if (!recipeList) return;
-        setRecipes(recipeList.recipes);
-      } catch (err) {
-        if (err instanceof Error) {
-          console.log(err.message);
-        }
-      }
-    };
-
-    getUserRecipeList();
-  }, [user?.uid]);
 
   const providerValue = { recipes, handleDelete, handleAdd };
 

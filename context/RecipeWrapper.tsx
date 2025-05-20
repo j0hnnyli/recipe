@@ -12,7 +12,7 @@ const RecipeWrapper = async ({ children } : Props) => {
   const session = (await cookies()).get("session");
   const sessionCookie = session?.value;
   
-  if(sessionCookie === undefined) return <>{children}</>;
+  if(!sessionCookie) return <>{children}</>;
 
   const userId = await getUserIdFromCookie(sessionCookie)
 

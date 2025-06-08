@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { createCookie } from "../actions/auth/signin";
 import { FormEvent, MouseEvent, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
@@ -12,7 +11,6 @@ import { auth } from "@/lib/firebase/config";
 import { FirebaseError } from "firebase/app";
 
 const SignInForm = () => {
-  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -35,7 +33,6 @@ const SignInForm = () => {
       const idToken = await userCred.user.getIdToken();
       await createCookie(idToken);
       
-      router.back();
     } catch(err) {
       if(err instanceof FirebaseError){
         const errorCode = err.code;

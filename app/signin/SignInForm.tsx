@@ -9,8 +9,10 @@ import ForgotPassword from "./ForgotPassword";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { FirebaseError } from "firebase/app";
+import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -32,7 +34,7 @@ const SignInForm = () => {
       const userCred = await signInWithEmailAndPassword(auth, email, pass);
       const idToken = await userCred.user.getIdToken();
       await createCookie(idToken);
-      
+      router.back();
     } catch(err) {
       if(err instanceof FirebaseError){
         const errorCode = err.code;

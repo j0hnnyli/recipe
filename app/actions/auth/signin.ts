@@ -2,7 +2,6 @@
 
 import { admin } from '@/lib/firebase/firestoreAdmin'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation';
 
 export async function createCookie(token : string){
   const cookie = await cookies();
@@ -14,6 +13,4 @@ export async function createCookie(token : string){
     path: '/',
     maxAge: expiresIn / 1000,
   });
-
-  redirect('/myrecipes')
 }

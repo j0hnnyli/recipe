@@ -47,10 +47,10 @@ const RegisterForm = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, email, pass);
-      setSucess(true);
       setEmail("");
       setPass("");
       setConfrimPass("");
+      setSucess(true);
       setTimeout(() => setSucess(false), 1500);
     } catch (err) {
       if (err instanceof FirebaseError) {
@@ -58,6 +58,8 @@ const RegisterForm = () => {
         const readableCode = errorCode.replace("auth/", "").replace(/-/g, " "); 
         setError(readableCode);
       }
+
+      setError('Unknown Error')
     }
 
     setIsLoading(false);

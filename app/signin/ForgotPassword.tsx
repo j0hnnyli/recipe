@@ -53,14 +53,16 @@ const ForgotPassword = () => {
           <DialogTitle className="text-primary_yellow">
             FORGOT PASSWORD?
           </DialogTitle>
-          <DialogDescription className="text-white flex items-center">
+          <DialogDescription className="text-white flex flex-col">
             <span>Email your sign up : </span>
-            {error.length > 0 && (
-              <span className="text-red-500 text-md ml-3">{error}</span>
-            )}
-            {send && (
-              <span className="text-green-500 text-md ml-3">Email Send </span>
-            )}
+            <span>
+              {error.length > 0 && (
+                <span className="text-red-500 text-md">{error}</span>
+              )}
+              {send && (
+                <span className="text-green-500 text-md">Email Send </span>
+              )}
+            </span>
           </DialogDescription>
         </DialogHeader>
         <input

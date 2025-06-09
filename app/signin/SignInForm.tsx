@@ -12,6 +12,7 @@ import { FirebaseError } from "firebase/app";
 import { useRouter } from "next/navigation";
 
 const SignInForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [pass, setPass] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
